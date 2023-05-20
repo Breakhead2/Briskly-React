@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css');
+
+* {
+  font-family: "Poppins", sans-serif;
+  color: #44425A;
+}
+
+.primary-color,
+.nav-link.active {
+  color: #FF6600 !important;
+}

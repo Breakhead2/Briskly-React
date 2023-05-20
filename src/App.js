@@ -1,8 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './Header/Header';
+
 function App() {
   return (
-    <div>
-      <h1>Briskly</h1>
-    </div>
+    <>
+      <Header />
+    </>
   );
 }
 
