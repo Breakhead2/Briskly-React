@@ -35,28 +35,14 @@ function Navbar() {
                   О нас
                 </a>
                 <a href="/" className="nav-item nav-link">
-                  Курсы
+                  Уроки
                 </a>
                 <a href="/" className="nav-item nav-link">
-                  Учителя
+                  Тесты
                 </a>
-                <div className="nav-item dropdown">
-                  <a
-                    href="/"
-                    className="nav-link dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    Блог
-                  </a>
-                  <div className="dropdown-menu rounded-0 m-0">
-                    <a href="/" className="dropdown-item">
-                      Blog List
-                    </a>
-                    <a href="/" className="dropdown-item">
-                      Blog Detail
-                    </a>
-                  </div>
-                </div>
+                <a href="/" className="nav-item nav-link">
+                  Статьи
+                </a>
                 <a href="/" className="nav-item nav-link">
                   Контакты
                 </a>
