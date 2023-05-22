@@ -1,8 +1,12 @@
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+
 function App() {
   return (
-    <div>
-      <h1>Briskly</h1>
-    </div>
+    <>
+      <Header />
+      <Footer />
+    </>
   );
 }
 
