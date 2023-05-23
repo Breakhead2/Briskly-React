@@ -1,5 +1,5 @@
-import Navbar from './Navbar/Navbar';
-import Topbar from './Topbar/Topbar';
+import Navbar from './Navbar';
+import Topbar from './Topbar';
 
 function Header() {
   return (
