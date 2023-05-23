@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
+
 function Topbar() {
   return (
     <div className="container-fluid d-none d-lg-block">
       <div className="row align-items-center py-4 px-xl-5">
         <div className="col-lg-3">
-          <a href="/" className="text-decoration-none d-flex">
+          <Link to="/" className="text-decoration-none d-flex">
             <img
               style={{ objectFit: 'cover', width: '31%' }}
               src="img/BrisklyLogo.png"
@@ -17,7 +19,7 @@ function Topbar() {
                 <span className="text-primary">L</span>EARN
               </h1>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="col-lg-3 text-right">
           <div className="d-inline-flex align-items-center">

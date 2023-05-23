@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 function Navbar() {
   return (
     <div className="container-fluid">
@@ -28,24 +30,24 @@ function Navbar() {
                 className="navbar-nav py-0"
                 style={{ fontSize: '18px', fontWeight: 'bolder' }}
               >
-                <a href="/" className="nav-item nav-link active">
+                <NavLink to="/" className="nav-item nav-link">
                   Главная
-                </a>
-                <a href="/" className="nav-item nav-link">
+                </NavLink>
+                <NavLink to="/about" className="nav-item nav-link">
                   О нас
-                </a>
-                <a href="/" className="nav-item nav-link">
+                </NavLink>
+                <NavLink to="/lessons" className="nav-item nav-link">
                   Уроки
-                </a>
-                <a href="/" className="nav-item nav-link">
+                </NavLink>
+                <NavLink to="/tests" className="nav-item nav-link">
                   Тесты
-                </a>
-                <a href="/" className="nav-item nav-link">
+                </NavLink>
+                <NavLink to="/articles" className="nav-item nav-link">
                   Статьи
-                </a>
-                <a href="/" className="nav-item nav-link">
+                </NavLink>
+                <NavLink to="/contacts" className="nav-item nav-link">
                   Контакты
-                </a>
+                </NavLink>
               </div>
               <a
                 className="btn py-2 px-4 ml-auto d-none d-lg-block"

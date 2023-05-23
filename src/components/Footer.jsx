@@ -1,10 +1,6 @@
 function Footer() {
   return (
     <div>
-      <h1 className="text-center" style={{ margin: '200px 0 200px' }}>
-        Здесь будет основной контент
-      </h1>
-
       <div className="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5">
         <div className="row pt-5">
           <div className="col-lg-7 col-md-12">
