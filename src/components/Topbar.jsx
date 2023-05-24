@@ -5,13 +5,13 @@ function Topbar() {
     <div className="container-fluid d-none d-lg-block">
       <div className="row align-items-center py-4 px-xl-5">
         <div className="col-lg-3">
-          <Link to="/" className="text-decoration-none d-flex">
-            <img
-              style={{ objectFit: 'cover', width: '31%' }}
-              src="img/BrisklyLogo.png"
-              alt=""
-            />
-            <div>
+          <Link
+            to="/"
+            className="text-decoration-none d-flex overflow-hidden h-100px"
+            style={{ height: '100px' }}
+          >
+            <img src="img/BrisklyLogo.png" alt="" />
+            <div className="px-1">
               <h1 className="m-0">
                 <span className="text-primary">B</span>RISCLY
               </h1>

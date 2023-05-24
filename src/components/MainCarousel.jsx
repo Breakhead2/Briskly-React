@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function MainCarousel() {
   return (
-    <Carousel controls={false}>
+    <Carousel controls={false} fade>
       <Carousel.Item>
         <img
           className="position-relative w-100"

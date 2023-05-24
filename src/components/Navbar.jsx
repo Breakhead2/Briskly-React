@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Navbar() {
   return (
@@ -49,17 +49,17 @@ function Navbar() {
                   Контакты
                 </NavLink>
               </div>
-              <a
+              <Link
                 className="btn py-2 px-4 ml-auto d-none d-lg-block"
-                href="/"
+                to="/register"
                 style={{
                   color: 'white',
                   backgroundColor: '#FF6600',
                   borderColor: '#FF6600',
                 }}
               >
-                Присоединиться
-              </a>
+                Зарегистрироваться
+              </Link>
             </div>
           </nav>
         </div>

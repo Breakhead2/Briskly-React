@@ -1,4 +1,4 @@
-import MainCarousel from '../components/carousel';
+import MainCarousel from '../components/MainCarousel';
 
 function Homepage() {
   return <MainCarousel />;
