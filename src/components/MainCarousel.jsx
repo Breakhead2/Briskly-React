@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 function MainCarousel() {
   return (
+      <div>
     <Carousel controls={false} fade>
       <Carousel.Item>
         <img
@@ -77,6 +78,15 @@ function MainCarousel() {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
+        <div className="container-fluid text-center py-5">
+          <h2>Добро пожаловать на сайт BrisklyLearn!</h2>
+        <div className="layer1">Добро пожаловать на путь знаний и новых возможностей!
+
+          Проходите бесплатную регистрацию и в Вашем личном кабинете будет доступна полезная информация, а также есть ответы на интересующие Вас вопросы.
+          В папке «Полезности» вы получите записи прямых эфиров и бесплатные вебинары:
+          — Плюсы и минусы онлайн-обучения; — «Удаленное обучение» и др.;</div>
+        </div>
+      </div>
   );
 }
 
