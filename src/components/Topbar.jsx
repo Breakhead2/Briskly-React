@@ -23,10 +23,15 @@ function Topbar() {
         </div>
         <div className="col-lg-3 text-right">
           <div className="d-inline-flex align-items-center">
-            <i className="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
+            <i className="fa fa-2x fa-search fa-spin text-primary mr-3"></i>
             <div className="text-left">
-              <h6 className="font-weight-semi-bold mb-1">Наш офис</h6>
-              <small>Ул.Неизвестно, 12, Город, Страна</small>
+              <h6 className="font-weight-semi-bold mb-1">Поиск</h6>
+              <small><form>
+                <label>
+                  <input type="text" name="name" />
+                </label>
+                <input type="submit" value="Отправить" className="otstup"/>
+              </form></small>
             </div>
           </div>
         </div>
@@ -34,8 +39,8 @@ function Topbar() {
           <div className="d-inline-flex align-items-center">
             <i className="fa fa-2x fa-envelope text-primary mr-3"></i>
             <div className="text-left">
-              <h6 className="font-weight-semi-bold mb-1">Email</h6>
-              <small>info@example.com</small>
+              <h6 className="font-weight-semi-bold mb-1">E-mail</h6>
+              <small>1@brisklylearn.ru</small>
             </div>
           </div>
         </div>
@@ -44,7 +49,7 @@ function Topbar() {
             <i className="fa fa-2x fa-phone text-primary mr-3"></i>
             <div className="text-left">
               <h6 className="font-weight-semi-bold mb-1">Свяжитесь с нами</h6>
-              <small>+012 345 6789</small>
+              <small>+7 916 977 7777</small>
             </div>
           </div>
         </div>

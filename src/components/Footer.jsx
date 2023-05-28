@@ -113,7 +113,11 @@ function Footer() {
             </ul>
           </div>
         </div>
+        <div>
+          <a className="btn2 btn2-lg btn2-primary btn2-lg-square back2-to-top fa fa-2x fa-angle-double-up" href="#"></a>
+        </div>
       </div>
+
     </div>
   );
 }

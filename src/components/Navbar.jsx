@@ -54,11 +54,12 @@ function Navbar() {
                 to="/register"
                 style={{
                   color: 'white',
-                  backgroundColor: '#FF6600',
+                  backgroundColor: '#44425A',
                   borderColor: '#FF6600',
                 }}
               >
-                Зарегистрироваться
+                <i className="fa fa-2x fa-user-o text-primary mr-3" ></i>
+                ЛИЧНЫЙ КАБИНЕТ
               </Link>
             </div>
           </nav>
