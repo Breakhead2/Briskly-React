@@ -11,7 +11,7 @@ function LessonsPage() {
   ];
   return (
     <div className="container-fluid text-center py-5">
-      <h2 className="mb-5">Lessons page</h2>
+      <h2 className="mb-5">Уроки</h2>
       <div className="d-flex justify-content-center">
         <div className="row row-cols-3">
           {lessons.map((lesson) => (
