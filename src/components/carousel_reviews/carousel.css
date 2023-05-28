@@ -1,0 +1,15 @@
+.carousel-indicators {
+  margin-top: 25px;
+    text-align: center;
+    box-sizing:border-box;
+    
+}
+.img-fluid {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+}
+.fa-f4 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
