@@ -9,6 +9,7 @@ import ContactsPage from '../pages/ContactsPage';
 import RegisterPage from '../pages/RegisterPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import SingleLessonPage from '../pages/SingleLessonPage';
+import SingleTestPage from '../pages/SingleTestPage';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/lessons/:id" element={<SingleLessonPage />} />
+
+        <Route path="/tests/:id" element={<SingleTestPage />} />
+
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
