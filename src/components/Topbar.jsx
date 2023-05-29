@@ -22,16 +22,18 @@ function Topbar() {
           </Link>
         </div>
         <div className="col-lg-3 text-right">
-          <div className="d-inline-flex align-items-center">
-            <i className="fa fa-2x fa-search fa-spin text-primary mr-3"></i>
-            <div className="text-left">
-              <h6 className="font-weight-semi-bold mb-1">Поиск</h6>
-              <small><form>
-                <label>
-                  <input type="text" name="name" />
-                </label>
-                <input type="submit" value="Отправить" className="otstup"/>
-              </form></small>
+          <div className="w-100 d-flex">
+            <i className="fa fa-2x fa-search text-primary mr-3"></i>
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control border-primary"
+                style={{ padding: 5, paddingLeft: 15 }}
+                placeholder="Что то ищете?"
+              />
+              <div className="input-group-append">
+                <button className="btn btn-primary px-4">Поиск</button>
+              </div>
             </div>
           </div>
         </div>
