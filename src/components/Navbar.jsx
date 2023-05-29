@@ -58,7 +58,8 @@ function Navbar() {
                   borderColor: '#FF6600',
                 }}
               >
-                Зарегистрироваться
+                <i className="fa fa-user text-white mr-3"></i>
+                Личный кабинет
               </Link>
             </div>
           </nav>

@@ -22,11 +22,18 @@ function Topbar() {
           </Link>
         </div>
         <div className="col-lg-3 text-right">
-          <div className="d-inline-flex align-items-center">
-            <i className="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
-            <div className="text-left">
-              <h6 className="font-weight-semi-bold mb-1">Наш офис</h6>
-              <small>Ул.Неизвестно, 12, Город, Страна</small>
+          <div className="w-100 d-flex">
+            <i className="fa fa-2x fa-search text-primary mr-3"></i>
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control border-primary"
+                style={{ padding: 5, paddingLeft: 15 }}
+                placeholder="Что то ищете?"
+              />
+              <div className="input-group-append">
+                <button className="btn btn-primary px-4">Поиск</button>
+              </div>
             </div>
           </div>
         </div>
@@ -34,8 +41,8 @@ function Topbar() {
           <div className="d-inline-flex align-items-center">
             <i className="fa fa-2x fa-envelope text-primary mr-3"></i>
             <div className="text-left">
-              <h6 className="font-weight-semi-bold mb-1">Email</h6>
-              <small>info@example.com</small>
+              <h6 className="font-weight-semi-bold mb-1">E-mail</h6>
+              <small>1@brisklylearn.ru</small>
             </div>
           </div>
         </div>
@@ -44,7 +51,7 @@ function Topbar() {
             <i className="fa fa-2x fa-phone text-primary mr-3"></i>
             <div className="text-left">
               <h6 className="font-weight-semi-bold mb-1">Свяжитесь с нами</h6>
-              <small>+012 345 6789</small>
+              <small>+7 916 977 7777</small>
             </div>
           </div>
         </div>
