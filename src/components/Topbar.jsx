@@ -29,7 +29,7 @@ function Topbar() {
                 type="text"
                 className="form-control border-primary"
                 style={{ padding: 5, paddingLeft: 15 }}
-                placeholder="Что то ищете?"
+                placeholder="Что-то ищете?"
               />
               <div className="input-group-append">
                 <button className="btn btn-primary px-4">Поиск</button>
