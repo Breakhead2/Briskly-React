@@ -51,7 +51,7 @@ function Navbar() {
               </div>
               <Link
                 className="btn py-2 px-4 ml-auto d-none d-lg-block"
-                to="/register"
+                to="/auth/login"
                 style={{
                   color: 'white',
                   backgroundColor: '#FF6600',
