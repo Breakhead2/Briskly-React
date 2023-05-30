@@ -14,7 +14,7 @@ const PopupComponent = ({ points, questions, handleRepeat, repeat }) => {
                 {repeat.length !== 0 ? (
                     <>
                         <p>Вы завершили упражнение!</p>
-                        <p>Но у вас есть ошибки. Чтобы закрыть упражнение, пройдите его без ошибок.</p>
+                        <p>Но у вас есть ошибки. Чтобы пройти урок, завершите упражнение без ошибок.</p>
                         <p>Вы набрали: { points } баллов из { questions }.</p>
                         <button onClick={handleOnClick}>Пройти повторно</button>
                         <button className="close" onClick={hadleClosePopup}>{"✖"}</button>
