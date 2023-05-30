@@ -280,3 +280,99 @@ h6,
     padding: 40px 20px;
     width: 600px;
 }
+
+//Exercise componet styles
+
+.exercise {
+    margin: 50px 0;
+    text-align: center;
+    background-color: burlywood;
+    position: relative;
+  }
+  .answer{
+    font-size: 18px;
+    padding: 10px 16px;
+    background-color:#FF6600;
+    border: none;
+    margin-right: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-image: none;
+    transition: all linear 0.3s;
+    color: white;
+  }
+  .answer:hover{
+    background-color: #d95700;
+  }
+  .wrong{
+    background-color: red;
+  }
+  .correct{
+    background-color: green;
+  }
+  button:focus{
+    border: none;
+  }
+  button:active{
+    border: none;
+  }
+  .popup{
+    padding: 30px;
+    background-color: #ffffff;
+    border: 2px solid rgba(167, 166, 166, 0.271);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    box-shadow: 1px 5px 12px -5px red;
+    transition: all liner 0.3s;
+  }
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+  .hidden{
+    opacity: 0;
+    display: none;
+  }
+  .indicators{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .block:first-child{
+    border-radius: 8px 0 0 8px;
+  }
+  .block:last-child{
+    border-radius: 0 8px 8px 0;
+  }
+  .block{
+    width: 100%;
+    height: 16px;
+    background-color: rgb(129, 124, 49);
+  }
+  .block.active{
+    background-color: rgb(173, 166, 64);
+  }
+
+//Lesson single page
+.lesson_content{
+    padding: 0 20px;
+    text-align: left;
+}
+.lesson_content_subheading{
+    font-weight: 700;
+}
+.lesson_content_marker{
+    font-weight: 900;
+}
+.lesson_content_advise{
+    background-color: #dff7dd;
+    padding: 20px;
+    font-weight: 700;
+    margin: 15px 0;
+}
