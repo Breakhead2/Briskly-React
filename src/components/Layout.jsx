@@ -1,11 +1,13 @@
-import Header from './Header';
 import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
+import Topbar from './Topbar';
+import Navbar from './Navbar';
 
 function Layout() {
   return (
     <>
-      <Header />
+      <Topbar />
+      <Navbar />
       <Outlet />
       <Footer />
       <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
