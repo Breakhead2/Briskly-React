@@ -39,9 +39,6 @@ function Navbar() {
                 <NavLink to="/tests" className="nav-item nav-link">
                   Тесты
                 </NavLink>
-                <NavLink to="/modules" className="nav-item nav-link">
-                  Модули
-                </NavLink>
                 <NavLink to="/articles" className="nav-item nav-link">
                   Статьи
                 </NavLink>

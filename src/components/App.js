@@ -6,7 +6,6 @@ import Layout from './Layout';
 import HomePage from '../pages/HomePage';
 import CoursesPage from '../pages/CoursesPage';
 import TestsPage from '../pages/TestsPage';
-import ModulesPage from '../pages/ModulesPage';
 import ArticlesPage from '../pages/ArticlesPage';
 import AboutPage from '../pages/AboutPage';
 import ContactsPage from '../pages/ContactsPage';
@@ -25,7 +24,6 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/tests" element={<TestsPage />} />
-        <Route path="/modules" element={<ModulesPage />} />
         <Route path="/articles" element={<ArticlesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
