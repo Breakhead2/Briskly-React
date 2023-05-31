@@ -2,6 +2,7 @@ import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
 import Topbar from './Topbar';
 import Navbar from './Navbar';
+import BackToTopBtn from './BackToTopBtn';
 
 function Layout() {
   return (
@@ -10,9 +11,7 @@ function Layout() {
       <Navbar />
       <Outlet />
       <Footer />
-      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
-        <i class="fa fa-angle-double-up"></i>
-      </a>
+      <BackToTopBtn />
     </>
   );
 }
