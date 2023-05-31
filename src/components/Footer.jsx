@@ -37,36 +37,6 @@ function Footer() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 mb-5">
-                <h5
-                  className="text-primary text-uppercase mb-4"
-                  style={{ letterSpacing: '5px' }}
-                >
-                  Наши курсы
-                </h5>
-                <div className="d-flex flex-column justify-content-start">
-                  <a href="/" className="text-white mb-2">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    Курс 1
-                  </a>
-                  <a href="/" className="text-white mb-2">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    Курс 2
-                  </a>
-                  <a href="/" className="text-white mb-2">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    Курс 3
-                  </a>
-                  <a href="/" className="text-white mb-2">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    Курс 4
-                  </a>
-                  <a href="/" className="text-white">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    Курс 5
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
           <div className="col-lg-5 col-md-12 mb-5">

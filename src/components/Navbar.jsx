@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   return (
@@ -33,34 +33,25 @@ function Navbar() {
                 <NavLink to="/" className="nav-item nav-link">
                   Главная
                 </NavLink>
-                <NavLink to="/about" className="nav-item nav-link">
-                  О нас
-                </NavLink>
-                <NavLink to="/lessons" className="nav-item nav-link">
-                  Уроки
+                <NavLink to="/courses" className="nav-item nav-link">
+                  Курсы
                 </NavLink>
                 <NavLink to="/tests" className="nav-item nav-link">
                   Тесты
                 </NavLink>
+                <NavLink to="/modules" className="nav-item nav-link">
+                  Модули
+                </NavLink>
                 <NavLink to="/articles" className="nav-item nav-link">
                   Статьи
+                </NavLink>
+                <NavLink to="/about" className="nav-item nav-link">
+                  О нас
                 </NavLink>
                 <NavLink to="/contacts" className="nav-item nav-link">
                   Контакты
                 </NavLink>
               </div>
-              <Link
-                className="btn py-2 px-4 ml-auto d-none d-lg-block"
-                to="/auth/login"
-                style={{
-                  color: 'white',
-                  backgroundColor: '#FF6600',
-                  borderColor: '#FF6600',
-                }}
-              >
-                <i className="fa fa-user text-white mr-3"></i>
-                Личный кабинет
-              </Link>
             </div>
           </nav>
         </div>

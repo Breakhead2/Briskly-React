@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function LessonsPage() {
+function CoursesPage() {
   const lessons = [
     { id: 1, title: 'lesson-1' },
     { id: 2, title: 'lesson-2' },
@@ -11,7 +11,7 @@ function LessonsPage() {
   ];
   return (
     <div className="container-fluid text-center py-5">
-      <h2 className="mb-5">Уроки</h2>
+      <h2 className="mb-5">Курсы</h2>
       <div className="d-flex justify-content-center">
         <div className="row row-cols-3">
           {lessons.map((lesson) => (
@@ -35,4 +35,4 @@ function LessonsPage() {
   );
 }
 
-export default LessonsPage;
+export default CoursesPage;
