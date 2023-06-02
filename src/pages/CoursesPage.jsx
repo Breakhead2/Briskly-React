@@ -12,8 +12,6 @@ function CoursesPage() {
       .then((res) => setData(res.data));
   }, []);
 
-  console.log(data);
-
   return (
     <div className="container-fluid text-center py-5">
       <h2 className="mb-5">Курсы</h2>
