@@ -29,7 +29,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/courses/:id" element={<LessonsPage />} />
-        <Route path="/courses/:id/:lessonId" element={<SingleLessonPage />} />
+        <Route path="/lessons/:lessonId" element={<SingleLessonPage />} />
         <Route path="/tests/:id" element={<SingleTestPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

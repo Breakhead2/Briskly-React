@@ -6,10 +6,11 @@ import axios from 'axios';
 function SingleLessonPage() {
   const [singleLesson, setSingleLesson] = useState({});
   const { lessonId } = useParams();
+  console.log(useParams());
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8010/proxy/api/get/lesson?id=${lessonId}`)
+      .get(`https://breakhd2.store/api/get/lesson?id=${lessonId}`)
       .then((res) => setSingleLesson(res.data));
   }, [lessonId]);
 
@@ -31,7 +32,6 @@ function SingleLessonPage() {
           allowFullScreen
         ></iframe>
       </div>
-      {/* <img src="/img/video-player-placeholder.gif" alt="..." /> */}
       <h2 className="mb-5">Упражнения для закрепления материала</h2>
       <Exercise questions={singleLesson?.questions} />
       <button className="btn btn-primary px-4">Список уроков</button>

@@ -8,7 +8,7 @@ function CoursesPage() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8010/proxy/api/get/courses')
+      .get('https://breakhd2.store/api/get/courses')
       .then((res) => setData(res.data));
   }, []);
 
