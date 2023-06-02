@@ -10,6 +10,7 @@ import ArticlesPage from '../pages/ArticlesPage';
 import AboutPage from '../pages/AboutPage';
 import ContactsPage from '../pages/ContactsPage';
 import NotFoundPage from '../pages/NotFoundPage';
+import LessonsPage from '../pages/LessonsPage';
 import SingleLessonPage from '../pages/SingleLessonPage';
 import SingleTestPage from '../pages/SingleTestPage';
 
@@ -27,7 +28,8 @@ function App() {
         <Route path="/articles" element={<ArticlesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
-        <Route path="/lessons/:id" element={<SingleLessonPage />} />
+        <Route path="/courses/:id" element={<LessonsPage />} />
+        <Route path="/courses/:id/:lessonId" element={<SingleLessonPage />} />
         <Route path="/tests/:id" element={<SingleTestPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
