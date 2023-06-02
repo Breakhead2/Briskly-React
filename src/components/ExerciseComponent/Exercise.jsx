@@ -16,7 +16,6 @@ function Exercise({ questions }) {
       setLoading(false);
       setData(questions);
     }
-    console.log(questions);
   }, [questions]);
 
   const handleRepeat = () => {

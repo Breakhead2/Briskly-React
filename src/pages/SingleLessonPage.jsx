@@ -26,9 +26,9 @@ function SingleLessonPage() {
           height="315"
           src={singleLesson.lesson?.video_link}
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </div>
       {/* <img src="/img/video-player-placeholder.gif" alt="..." /> */}
