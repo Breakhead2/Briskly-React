@@ -1,26 +1,20 @@
-import { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchallLessons } from '../store/slices/allLessonsSlice';
+import { Card } from 'react-bootstrap';
 import Loader from '../components/Loader';
 
 function LessonsPage() {
   const { id } = useParams();
-  const [lessons, setLessons] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector((state) => state.allLessons.loading);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`http://localhost:8010/proxy/api/get/lessons?id=${id}`)
-      .then((response) => {
-        if (response.data.success) {
-          setLessons(response.data.lessons);
-          setLoading(false);
-        }
-      })
-      .catch((error) => console.log(error));
-  }, [id]);
+    dispatch(fetchallLessons(id));
+  }, [dispatch, id]);
+
+  const lessons = useSelector((state) => state.allLessons.lessons);
 
   return (
     <div className="container-fluid text-center py-5">
@@ -32,7 +26,7 @@ function LessonsPage() {
           <div className="d-flex justify-content-center">
             <div className="row row-cols-3 w-100">
               <div className="col mb-3">
-                {lessons?.map((lesson) => {
+                {lessons.map((lesson) => {
                   return (
                     <Card key={lesson.id}>
                       <Card.Img variant="top" src={lesson.image} />
