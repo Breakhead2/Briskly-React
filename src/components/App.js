@@ -24,12 +24,12 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
+        <Route path="/courses/:id" element={<LessonsPage />} />
+        <Route path="/courses/:id/:lessonId" element={<SingleLessonPage />} />
         <Route path="/tests" element={<TestsPage />} />
         <Route path="/articles" element={<ArticlesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
-        <Route path="/courses/:id" element={<LessonsPage />} />
-        <Route path="/lessons/:lessonId" element={<SingleLessonPage />} />
         <Route path="/tests/:id" element={<SingleTestPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
