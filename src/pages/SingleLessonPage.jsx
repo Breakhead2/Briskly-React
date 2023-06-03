@@ -1,40 +1,51 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Exercise from '../components/ExerciseComponent/Exercise';
-import axios from 'axios';
+import { fetchLesson } from '../store/slices/lessonSlice';
+import Loader from '../components/Loader';
 
 function SingleLessonPage() {
-  const [singleLesson, setSingleLesson] = useState({});
-  const { lessonId } = useParams();
-  console.log(useParams());
+  const { id, lessonId } = useParams();
+  const dispatch = useDispatch();
+
+  const loading = useSelector((state) => state.lesson.loading);
 
   useEffect(() => {
-    axios
-      .get(`https://breakhd2.store/api/get/lesson?id=${lessonId}`)
-      .then((res) => setSingleLesson(res.data));
-  }, [lessonId]);
+    dispatch(fetchLesson(lessonId));
+  }, [dispatch, lessonId]);
 
-  const html = { __html: singleLesson.lesson?.text };
+  const lesson = useSelector((state) => state.lesson.lesson);
+
+  const html = { __html: lesson?.lesson.text };
 
   return (
     <div className="container-fluid text-center py-5">
-      <h2 className="mb-5">{singleLesson?.lesson?.heading}</h2>
-      <div dangerouslySetInnerHTML={html}></div>
-      <div className="video_container">
-        <h2 className="mb-5">Видеоурок</h2>
-        <iframe
-          width="560"
-          height="315"
-          src={singleLesson.lesson?.video_link}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
-      </div>
-      <h2 className="mb-5">Упражнения для закрепления материала</h2>
-      <Exercise questions={singleLesson?.questions} />
-      <button className="btn btn-primary px-4">Список уроков</button>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <h2 className="mb-5">{lesson?.lesson.heading}</h2>
+          <div dangerouslySetInnerHTML={html}></div>
+          <div className="video_container">
+            <h2 className="mb-5">Видеоурок</h2>
+            <iframe
+              width="560"
+              height="315"
+              src={lesson?.lesson.video_link}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <h2 className="mb-5">Упражнения для закрепления материала</h2>
+          <Exercise questions={lesson?.questions} />
+          <Link to={`/courses/${id}`} className="btn btn-primary px-4">
+            Список уроков
+          </Link>
+        </>
+      )}
     </div>
   );
 }
