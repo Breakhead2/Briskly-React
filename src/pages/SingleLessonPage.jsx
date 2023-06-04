@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Exercise from '../components/ExerciseComponent/Exercise';
@@ -6,18 +6,17 @@ import { fetchLesson } from '../store/slices/lessonSlice';
 import Loader from '../components/Loader';
 
 function SingleLessonPage() {
-  const { id, lessonId } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
   const loading = useSelector((state) => state.lesson.loading);
+  const lesson = useSelector((state) => state.lesson.lesson);
+  const html = { __html: lesson?.lesson.text };
 
   useEffect(() => {
-    dispatch(fetchLesson(lessonId));
-  }, [dispatch, lessonId]);
-
-  const lesson = useSelector((state) => state.lesson.lesson);
-
-  const html = { __html: lesson?.lesson.text };
+    dispatch(fetchLesson(id));
+  }, [dispatch, id]);
 
   return (
     <div className="container-fluid text-center py-5">
@@ -41,9 +40,9 @@ function SingleLessonPage() {
           </div>
           <h2 className="mb-5">Упражнения для закрепления материала</h2>
           <Exercise questions={lesson?.questions} />
-          <Link to={`/courses/${id}`} className="btn btn-primary px-4">
+          <button onClick={goBack} className="btn btn-primary px-4">
             Список уроков
-          </Link>
+          </button>
         </>
       )}
     </div>

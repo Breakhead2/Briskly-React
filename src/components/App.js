@@ -25,7 +25,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/courses/:id" element={<LessonsPage />} />
-        <Route path="/courses/:id/:lessonId" element={<SingleLessonPage />} />
+        <Route path="/lessons/:id" element={<SingleLessonPage />} />
         <Route path="/tests" element={<TestsPage />} />
         <Route path="/articles" element={<ArticlesPage />} />
         <Route path="/about" element={<AboutPage />} />

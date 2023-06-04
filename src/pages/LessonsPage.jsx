@@ -28,18 +28,18 @@ function LessonsPage() {
               <div className="col mb-3">
                 {lessons.map((lesson) => {
                   return (
-                    <Card key={lesson.id}>
-                      <Card.Img variant="top" src={lesson.image} />
-                      <Card.Body>
-                        <Card.Title>{lesson.heading}</Card.Title>
-                        <Link
-                          to={`/courses/${id}/${lesson.id}`}
-                          key={lesson.id}
-                        >
-                          Перейти
-                        </Link>
-                      </Card.Body>
-                    </Card>
+                    <Link
+                      to={`/lessons/${lesson.id}`}
+                      key={lesson.id}
+                      className="text-decoration-none"
+                    >
+                      <Card>
+                        <Card.Img variant="top" src={lesson.image} />
+                        <Card.Body>
+                          <Card.Title>{lesson.heading}</Card.Title>
+                        </Card.Body>
+                      </Card>
+                    </Link>
                   );
                 })}
               </div>
