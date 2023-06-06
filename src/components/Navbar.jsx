@@ -1,35 +1,26 @@
 import { NavLink } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap';
 
-function Navbar() {
+function NavBar() {
   return (
     <div className="container-fluid">
       <div className="row border-top px-xl-5">
         <div className="col-lg-12">
-          <nav
-            className="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0"
-            style={{ height: '67px' }}
-          >
-            <a href="/" className="text-decoration-none d-block d-lg-none">
-              <h1 className="m-0">
-                <span className="text-primary">B</span>RISCLY
-              </h1>
-            </a>
-            <button
-              type="button"
-              className="navbar-toggler"
-              data-toggle="collapse"
-              data-target="#navbarCollapse"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div
-              className="navbar-collapse justify-content-between"
-              id="navbarCollapse"
-            >
-              <div
-                className="navbar-nav py-0"
-                style={{ fontSize: '18px', fontWeight: 'bolder' }}
-              >
+          <Navbar bg="light" expand="lg">
+            <Navbar.Brand>
+              <img
+                className="d-lg-none"
+                src="/img/BrisklyLogo.svg"
+                alt="BrisklyLearn"
+                width="40"
+              />
+            </Navbar.Brand>
+            <Navbar.Toggle
+              aria-controls="basic-navbar-nav"
+              style={{ float: 'right' }}
+            />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
                 <NavLink to="/" className="nav-item nav-link">
                   Главная
                 </NavLink>
@@ -48,13 +39,13 @@ function Navbar() {
                 <NavLink to="/contacts" className="nav-item nav-link">
                   Контакты
                 </NavLink>
-              </div>
-            </div>
-          </nav>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
         </div>
       </div>
     </div>
   );
 }
 
-export default Navbar;
+export default NavBar;

@@ -1,14 +1,14 @@
 import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
 import Topbar from './Topbar';
-import Navbar from './Navbar';
+import NavBar from './Navbar';
 import BackToTopBtn from './BackToTopBtn';
 
 function Layout() {
   return (
     <>
       <Topbar />
-      <Navbar />
+      <NavBar />
       <Outlet />
       <Footer />
       <BackToTopBtn />
