@@ -10,7 +10,7 @@ function Topbar() {
             className="text-decoration-none d-flex overflow-hidden h-100px"
             style={{ height: '100px' }}
           >
-            <img src="/img/BrisklyLogo.png" alt="" />
+            <img src="/img/BrisklyLogo.svg" alt="" />
             <div className="px-1">
               <h1 className="m-0">
                 <span className="text-primary">B</span>RISKLY
