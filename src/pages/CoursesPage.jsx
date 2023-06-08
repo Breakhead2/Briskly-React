@@ -5,12 +5,13 @@ import CourseComponent from '../components/coursecomponent/CourseComponent';
 
 function CoursesPage() {
   const dispatch = useDispatch();
+  const courses = useSelector((state) => state.courses.courses);
 
   useEffect(() => {
-    dispatch(fetchCourses());
-  }, [dispatch]);
-
-  const courses = useSelector((state) => state.courses.courses);
+    if (!courses.length) {
+      dispatch(fetchCourses());
+    }
+  }, [dispatch, courses]);
 
   return <CourseComponent courses={courses} />;
 }
