@@ -20,7 +20,7 @@ function LoginPage() {
     if (user) {
       navigate(-1);
     }
-    if (error) {
+    if (error.length) {
       dispatch(showModal(error));
     }
   }, [user, navigate, error, dispatch]);

@@ -47,7 +47,7 @@ const profileSlice = createSlice({
     user: null,
     profile: null,
     loading: false,
-    error: false,
+    error: [],
   },
   extraReducers: {
     [login.pending]: (state) => {
@@ -55,7 +55,6 @@ const profileSlice = createSlice({
     },
     [login.fulfilled]: (state, action) => {
       if (!action.payload.success) {
-        console.log(action.payload);
         state.error = action.payload.errors;
         state.loading = false;
         return;

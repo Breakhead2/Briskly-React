@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const errorModalSlice = createSlice({
   name: 'errorModal',
   initialState: {
-    error: null,
+    error: [],
     show: false,
   },
   reducers: {

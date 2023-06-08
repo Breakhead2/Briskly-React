@@ -15,11 +15,7 @@ function ErrorModal() {
       <Modal.Header closeButton>
         <Modal.Title>Ошибка</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        {error.map((e) => (
-          <p>{e}</p>
-        ))}
-      </Modal.Body>
+      <Modal.Body>{error[0]}</Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={handleClose}>
           Понятно

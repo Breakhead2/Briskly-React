@@ -21,7 +21,7 @@ function RegisterPage() {
   useEffect(() => {
     if (user) navigate('/');
 
-    if (error) dispatch(showModal(error));
+    if (error.length) dispatch(showModal(error));
   }, [user, navigate, dispatch, error]);
 
   const nameHandle = (e) => {
