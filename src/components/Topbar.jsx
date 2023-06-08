@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import UserInfo from './UserInfo';
 
 function Topbar() {
   return (
@@ -37,22 +38,7 @@ function Topbar() {
             </div>
           </div>
         </div> */}
-        <div className="col-lg-3 text-right">
-          <div className="d-flex align-items-center" style={{ height: '100%' }}>
-            <Link
-              className="btn py-2 px-4 ml-auto d-none d-lg-block"
-              to="/auth/login"
-              style={{
-                color: 'white',
-                backgroundColor: '#FF6600',
-                borderColor: '#FF6600',
-              }}
-            >
-              <i className="fa fa-user text-white mr-3"></i>
-              Личный кабинет
-            </Link>
-          </div>
-        </div>
+        <UserInfo />
       </div>
     </div>
   );
