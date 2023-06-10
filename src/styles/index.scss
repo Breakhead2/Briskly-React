@@ -302,10 +302,10 @@ h6,
 .answer:hover {
   background-color: #d95700;
 }
-.wrong {
+.btn-wrong {
   background-color: red;
 }
-.correct {
+.btn-correct {
   background-color: green;
 }
 button:focus {
@@ -355,6 +355,12 @@ button:active {
 }
 .block.active {
   background-color: rgb(173, 166, 64);
+}
+.block.wrong {
+  background-color: red;
+}
+.block.correct {
+  background-color: rgb(1, 150, 1);
 }
 
 //Lesson single page

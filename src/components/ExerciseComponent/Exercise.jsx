@@ -22,6 +22,10 @@ function Exercise({ questions }) {
     setIsEnd(false);
     setCounter(0);
     setPoints(0);
+    const blocks = document.querySelectorAll('.block');
+    for (let block of blocks) {
+      block.className = 'block';
+    }
   };
 
   return (
