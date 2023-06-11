@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const login = createAsyncThunk(
   'profile/login',
   async function (userData) {
-    await fetch('https://ct.jn5.ru/sanctum/csrf-cookie');
+    await fetch('https://breakhd2.store/sanctum/csrf-cookie');
 
     const response = await fetch('http://localhost:8010/proxy/api/auth/login', {
       method: 'POST',
@@ -22,7 +22,7 @@ export const login = createAsyncThunk(
 export const register = createAsyncThunk(
   'profile/register',
   async function (registerData) {
-    await fetch('https://ct.jn5.ru/sanctum/csrf-cookie');
+    await fetch('https://breakhd2.store/sanctum/csrf-cookie');
 
     const response = await fetch(
       'http://localhost:8010/proxy/api/auth/register',

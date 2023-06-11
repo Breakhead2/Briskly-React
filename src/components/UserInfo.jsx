@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 function UserInfo() {
   const profile = useSelector((state) => state.profile.profile);
-  console.log(profile);
 
   return (
     <div className="col-lg-3 text-right">
