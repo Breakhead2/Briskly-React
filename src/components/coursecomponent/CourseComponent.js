@@ -14,10 +14,10 @@ function CourseComponent({ courses }) {
         <>
           <h2 className="mb-5">Курсы</h2>
           <div className="d-flex justify-content-center">
-            <div className="row row-cols-3 w-100">
+            <div className="row row-cols-3">
               {courses.map((course) => (
-                <div key={course.id} className="col mb-3">
-                  <Card>
+                <div key={course.id} className="p-3">
+                  <Card className="h-100">
                     <Card.Img
                       variant="top"
                       src={course.image_url}
@@ -26,10 +26,12 @@ function CourseComponent({ courses }) {
                     <Card.Body>
                       <Card.Title>{course.name}</Card.Title>
                       <Card.Text
-                        style={{ height: '100px', overflow: 'scroll' }}
+                      // style={{ height: '100px', overflow: 'scroll' }}
                       >
                         {course.description}
                       </Card.Text>
+                    </Card.Body>
+                    <Card.Footer className="bg-light">
                       <Link
                         to={course.id === 1 ? `/courses/${course.id}` : '#'}
                         style={
@@ -40,7 +42,7 @@ function CourseComponent({ courses }) {
                       >
                         Перейти
                       </Link>
-                    </Card.Body>
+                    </Card.Footer>
                   </Card>
                 </div>
               ))}
