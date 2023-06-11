@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import style from './TestComponent.module.css';
 import MainCompoent from './MainComponent/MainComponent';
 import PopupComponent from '../ExerciseComponent/PopupComponent';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTest } from '../../store/slices/testSlice';
+import Loader from '../Loader';
+import { useNavigate } from 'react-router-dom';
 
 function TestComponent({ testId }) {
-  const [data, setData] = useState([]);
   const [counter, setCounter] = useState(0);
   const [isEnd, setIsEnd] = useState(false);
   const [points, setPoints] = useState(0);
   const [errors, setErrors] = useState(0);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.test.test);
+  const loading = useSelector((state) => state.test.loading);
+  const navigate = useNavigate();
+  const goBack = () => navigate('/tests');
 
   const handleRepeat = () => {
     setIsEnd(false);
@@ -22,37 +29,41 @@ function TestComponent({ testId }) {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8010/proxy/api/get/test?id=${testId}`)
-      .then((response) => {
-        if (response.data.success) setData(response.data);
-      })
-      .catch((error) => console.log(error));
-  }, [testId]);
+    dispatch(fetchTest(testId));
+  }, [testId, dispatch]);
 
   return (
-    <div className={style.main}>
-      <h1 className={style.heading}>{data.test_name}</h1>
-      <MainCompoent
-        questions={data.questions}
-        counter={counter}
-        setCounter={setCounter}
-        setIsEnd={setIsEnd}
-        points={points}
-        setPoints={setPoints}
-        errors={errors}
-        setErrors={setErrors}
-      />
-      {isEnd && (
-        <PopupComponent
-          questions={data.questions.length}
-          points={points}
-          handleRepeat={handleRepeat}
-          repeat={errors}
-          test={true}
-        />
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className={style.main}>
+          <h1 className={style.heading}>{data?.test_name}</h1>
+          <MainCompoent
+            questions={data?.questions}
+            counter={counter}
+            setCounter={setCounter}
+            setIsEnd={setIsEnd}
+            points={points}
+            setPoints={setPoints}
+            errors={errors}
+            setErrors={setErrors}
+          />
+          {isEnd && (
+            <PopupComponent
+              questions={data?.questions.length}
+              points={points}
+              handleRepeat={handleRepeat}
+              repeat={errors}
+              test={true}
+            />
+          )}
+          <button onClick={goBack} className="btn btn-primary px-4">
+            Список тестов
+          </button>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
