@@ -20,7 +20,7 @@ function Footer() {
                   <i className="fa fa-phone-alt mr-2"></i>+012 345 6789
                 </p>
                 <p>
-                  <i className="fa fa-envelope mr-2"></i>info@example.com
+                  <a href="mailto:briskly.learn@mail.ru"><i className="fa fa-envelope mr-2"></i> briskly.learn@mail.ru</a>
                 </p>
                 <div className="d-flex justify-content-start mt-4">
                   <div className="btn btn-outline-light btn-square mr-2">
