@@ -1,3 +1,5 @@
+import declension from '../../services/declension';
+
 const PopupComponent = ({ points, questions, handleRepeat, repeat, test }) => {
   const handleOnClick = () => {
     const popup = document.querySelector('.popup');
@@ -7,7 +9,6 @@ const PopupComponent = ({ points, questions, handleRepeat, repeat, test }) => {
   const hadleClosePopup = () => {
     const popup = document.querySelector('.popup');
     popup.classList.add('hidden');
-    // заглушка в дальнейшем будет вести на страничку с курсом
   };
   return (
     <div className="popup">
@@ -19,7 +20,8 @@ const PopupComponent = ({ points, questions, handleRepeat, repeat, test }) => {
             {test ? '' : 'Чтобы пройти урок, завершите упражнение без ошибок.'}
           </p>
           <p>
-            Вы набрали: {points} баллов из {questions}.
+            Вы набрали: {declension(points, ['балл', 'балла', 'баллов'])} из{' '}
+            {questions}.
           </p>
           <button onClick={handleOnClick}>Пройти повторно</button>
           <button className="close" onClick={hadleClosePopup}>
@@ -31,7 +33,8 @@ const PopupComponent = ({ points, questions, handleRepeat, repeat, test }) => {
           <p>Поздравляем!</p>
           <p>Вы завершили {test ? 'тест' : 'упражнение'} без ошибок!</p>
           <p>
-            Вы набрали: {points} баллов из {questions}.
+            Вы набрали: {declension(points, ['балл', 'балла', 'баллов'])} из{' '}
+            {questions}.
           </p>
           <button className="close" onClick={hadleClosePopup}>
             {'✖'}
