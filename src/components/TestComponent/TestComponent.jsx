@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTest } from '../../store/slices/testSlice';
 import Loader from '../Loader';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function TestComponent({ testId }) {
   const [counter, setCounter] = useState(0);
@@ -31,6 +32,23 @@ function TestComponent({ testId }) {
   useEffect(() => {
     dispatch(fetchTest(testId));
   }, [testId, dispatch]);
+
+  useEffect(() => {
+    if (isEnd) {
+      // if (errors === 0 && points > 0) {
+      debugger;
+      const data = {
+        points,
+        testId,
+      };
+      axios
+        .post('http://localhost:8010/proxy/api/send/point', data)
+        .then((response) => {
+          console.log(response.data);
+        });
+      // }
+    }
+  }, [isEnd, errors, points, testId]);
 
   return (
     <>

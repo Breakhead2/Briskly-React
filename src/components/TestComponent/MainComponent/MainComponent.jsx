@@ -81,7 +81,7 @@ function MainCompoent({
               <img src={questions ? questions[counter].image_url : ''} alt="" />
             </div>
           </div>
-          <div className="col-md-6 d-md-flex m-fl" >
+          <div className="col-md-6 d-md-flex m-fl">
             <ul className="answers-box">
               {questions
                 ? questions[counter].answers.split(',').map((answer, index) => (

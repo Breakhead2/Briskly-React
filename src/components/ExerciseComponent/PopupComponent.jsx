@@ -12,7 +12,7 @@ const PopupComponent = ({ points, questions, handleRepeat, repeat, test }) => {
   };
   return (
     <div className="popup">
-      {repeat.length !== 0 || repeat ? (
+      {repeat.length !== 0 || repeat !== 0 ? (
         <>
           <p>Вы завершили {test ? 'тест' : 'упражнение'}!</p>
           <p>

@@ -1,5 +1,4 @@
 function declension(value, words, show = true) {
-  debugger;
   let num = value % 100;
   if (num > 19) num = num % 10;
 
