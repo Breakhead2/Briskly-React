@@ -383,10 +383,11 @@ button:active {
   margin: 15px 0;
 }
 
-//tests apge
-// .card-test {
-//   height: 350px;
-// }
-// .card-test img {
-//   height: 260px;
-// }
+@media (max-width: 541px) {
+  .video_container > iframe {
+    width: 100%;
+  }
+  .answer {
+    margin-right: 0;
+  }
+}

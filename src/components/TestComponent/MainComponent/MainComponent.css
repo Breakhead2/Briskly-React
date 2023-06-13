@@ -99,9 +99,22 @@
   border-bottom: 1px solid rgb(178, 178, 178);
 }
 
-
 .m-fl {
-margin: auto;
-    justify-content: center;
-    flex-direction: column;
+  margin: auto;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* media queries */
+
+@media (max-width: 320px) {
+  .indicators {
+    gap: 5px;
+  }
+  .counter {
+    padding: 16px 0;
+  }
+  .m-fl > .image-container {
+    height: 250px;
+  }
 }
