@@ -45,6 +45,7 @@ function TestComponent({ testId }) {
           .then((response) => {
             if (response.data.success) {
               console.log(response.data);
+              //TODO находить блок с баллами и менять его значение
             }
           })
           .catch((error) => console.log(error));
