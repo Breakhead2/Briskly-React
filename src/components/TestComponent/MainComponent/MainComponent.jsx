@@ -54,7 +54,6 @@ function MainCompoent({
     if (counter < questions.length - 1) {
       setCounter(counter + 1);
     } else {
-      debugger;
       setIsEnd(true);
     }
   };
@@ -76,24 +75,28 @@ function MainCompoent({
         <h3 className="question">
           {questions ? questions[counter].value : ''}
         </h3>
-        <form className="form">
-          <div className="image-container">
-            <img src={questions ? questions[counter].image_url : ''} alt="" />
+        <div className="row">
+          <div className="col-md-6 d-md-flex m-fl">
+            <div className="image-container">
+              <img src={questions ? questions[counter].image_url : ''} alt="" />
+            </div>
           </div>
-          <ul className="answers-box">
-            {questions
-              ? questions[counter].answers.split(',').map((answer, index) => (
-                  <li
-                    className="answer-item"
-                    key={index}
-                    onClick={handleCheckAnswer}
-                  >
-                    {answer}
-                  </li>
-                ))
-              : ''}
-          </ul>
-        </form>
+          <div className="col-md-6 d-md-flex m-fl" >
+            <ul className="answers-box">
+              {questions
+                ? questions[counter].answers.split(',').map((answer, index) => (
+                    <li
+                      className="answer-item"
+                      key={index}
+                      onClick={handleCheckAnswer}
+                    >
+                      {answer}
+                    </li>
+                  ))
+                : ''}
+            </ul>
+          </div>
+        </div>
       </div>
       <button className="skip" onClick={handleSkipQuestion}>
         Пропустить вопрос
