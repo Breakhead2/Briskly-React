@@ -35,18 +35,20 @@ function TestComponent({ testId }) {
 
   useEffect(() => {
     if (isEnd) {
-      // if (errors === 0 && points > 0) {
-      debugger;
-      const data = {
-        points,
-        testId,
-      };
-      axios
-        .post('http://localhost:8010/proxy/api/send/point', data)
-        .then((response) => {
-          console.log(response.data);
-        });
-      // }
+      if (errors === 0 && points > 0) {
+        const data = {
+          points,
+          testId,
+        };
+        axios
+          .post('http://localhost:8010/proxy/api/send/points', data)
+          .then((response) => {
+            if (response.data.success) {
+              console.log(response.data);
+            }
+          })
+          .catch((error) => console.log(error));
+      }
     }
   }, [isEnd, errors, points, testId]);
 
