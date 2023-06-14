@@ -3,7 +3,7 @@ import '../../styles/index.scss';
 import { useEffect, useState } from 'react';
 import PopupComponent from './PopupComponent';
 
-function Exercise({ questions }) {
+function Exercise({ questions, lessonId }) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const [counter, setCounter] = useState(0);
@@ -17,6 +17,26 @@ function Exercise({ questions }) {
       setData(questions);
     }
   }, [questions]);
+
+  useEffect(() => {
+    if (isEnd) {
+      if (repeat.length === 0 && points > 0) {
+        const data = {
+          points,
+          lessonId,
+        };
+        axios
+          .post('http://localhost:8010/proxy/api/send/points', data)
+          .then((response) => {
+            if (response.data.success) {
+              console.log(response.data);
+              //TODO находить блок с баллами и менять его значение
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    }
+  }, [isEnd, errors, points, testId]);
 
   const handleRepeat = () => {
     setIsEnd(false);
