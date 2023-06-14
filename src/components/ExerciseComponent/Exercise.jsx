@@ -2,6 +2,7 @@ import TestComponent from './TestComponent';
 import '../../styles/index.scss';
 import { useEffect, useState } from 'react';
 import PopupComponent from './PopupComponent';
+import axios from 'axios';
 
 function Exercise({ questions, lessonId }) {
   const [loading, setLoading] = useState(true);
@@ -36,7 +37,7 @@ function Exercise({ questions, lessonId }) {
           .catch((error) => console.log(error));
       }
     }
-  }, [isEnd, errors, points, testId]);
+  }, [isEnd, repeat, points, lessonId]);
 
   const handleRepeat = () => {
     setIsEnd(false);
