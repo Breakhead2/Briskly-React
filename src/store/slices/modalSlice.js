@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const errorModalSlice = createSlice({
-  name: 'errorModal',
+const modalSlice = createSlice({
+  name: 'modal',
   initialState: {
-    error: [],
+    message: [],
     show: false,
   },
   reducers: {
     showModal(state, action) {
       state.show = true;
-      state.error = action.payload;
+      state.message = action.payload;
     },
     closeModal(state) {
       state.show = false;
@@ -17,6 +17,6 @@ const errorModalSlice = createSlice({
   },
 });
 
-export const { showModal, closeModal } = errorModalSlice.actions;
+export const { showModal, closeModal } = modalSlice.actions;
 
-export default errorModalSlice.reducer;
+export default modalSlice.reducer;

@@ -1,9 +1,24 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { confirmLogin } from '../store/slices/profileSlice';
+import Loader from './Loader';
 
 function UserInfo() {
   const profile = useSelector((state) => state.profile.profile);
+  const loading = useSelector((state) => state.profile.loading);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(confirmLogin());
+  }, [dispatch]);
+
+  const logout = () => {
+    fetch('http://localhost:8010/proxy/api/auth/logout');
+  };
 
   return (
     <div className="col-lg-3 text-right">
@@ -11,48 +26,54 @@ function UserInfo() {
         className="d-flex align-items-center justify-content-end"
         style={{ height: '100%' }}
       >
-        {profile ? (
-          <Dropdown>
-            <div className="p-3 d-flex align-items-center border border-secondary rounded">
-              <img
-                src={profile.image_url}
-                alt="..."
-                style={{ width: '30px' }}
-              />
-              <h6 className="mb-0 ml-2">{profile.name}</h6>
-              <span className="ml-3">
-                55
-                <i className="fa fa-bolt text-primary ml-1"></i>
-              </span>
-              <Dropdown.Toggle
-                variant="secondary"
-                id="dropdown-basic"
-                className="ml-2"
-              ></Dropdown.Toggle>
-            </div>
-
-            <Dropdown.Menu>
-              <Dropdown.Item>
-                <Link to="/profile" className="text-decoration-none">
-                  Профиль
-                </Link>
-              </Dropdown.Item>
-              <Dropdown.Item>Выйти</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+        {loading ? (
+          <Loader width={30} height={30} />
         ) : (
-          <Link
-            className="btn py-2 px-4 ml-auto d-none d-lg-block"
-            to="/auth/login"
-            style={{
-              color: 'white',
-              backgroundColor: '#FF6600',
-              borderColor: '#FF6600',
-            }}
-          >
-            {/* <i className="fa fa-user text-white mr-3"></i> */}
-            Вход/Регистрация
-          </Link>
+          <>
+            {profile ? (
+              <Dropdown>
+                <div className="p-3 d-flex align-items-center border border-secondary rounded">
+                  <img
+                    src={profile.image_url}
+                    alt="..."
+                    style={{ width: '30px' }}
+                  />
+                  <h6 className="mb-0 ml-2">{profile.name}</h6>
+                  <span className="ml-3">
+                    55
+                    <i className="fa fa-bolt text-primary ml-1"></i>
+                  </span>
+                  <Dropdown.Toggle
+                    variant="secondary"
+                    id="dropdown-basic"
+                    className="ml-2"
+                  ></Dropdown.Toggle>
+                </div>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <Link to="/profile" className="text-decoration-none">
+                      Профиль
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={logout}>Выйти</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              <Link
+                className="btn py-2 px-4 ml-auto d-none d-lg-block"
+                to="/auth/login"
+                style={{
+                  color: 'white',
+                  backgroundColor: '#FF6600',
+                  borderColor: '#FF6600',
+                }}
+              >
+                {/* <i className="fa fa-user text-white mr-3"></i> */}
+                Вход/Регистрация
+              </Link>
+            )}
+          </>
         )}
       </div>
     </div>

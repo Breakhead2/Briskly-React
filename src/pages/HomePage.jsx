@@ -1,19 +1,8 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCourses } from '../store/slices/coursesSlice';
 import MainCarousel from '../components/MainCarousel';
 import CarouselReviews from '../components/CarouselReviews';
-import CourseComponent from '../components/coursecomponent/CourseComponent';
+import Courses from '../components/Courses';
 
 function Homepage() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCourses());
-  }, [dispatch]);
-
-  const courses = useSelector((state) => state.courses.courses.slice(0, 3));
-
   return (
     <>
       <MainCarousel />
@@ -28,7 +17,7 @@ function Homepage() {
           др.;
         </p>
       </div>
-      <CourseComponent courses={courses} />
+      <Courses count={1} />
       <CarouselReviews />
     </>
   );
