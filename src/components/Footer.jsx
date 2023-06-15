@@ -1,4 +1,27 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { sendNotification } from '../store/slices/notificationSlice';
+import Modal from './Modal';
+import Loader from './Loader';
+import { showModal } from '../store/slices/modalSlice';
+
 function Footer() {
+  const [email, setEmail] = useState('');
+  const loading = useSelector((state) => state.notification.loading);
+  const message = useSelector((state) => state.notification.message);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (message) {
+      dispatch(showModal(message));
+    }
+  }, [dispatch, message]);
+  const emailHandle = (e) => {
+    setEmail(e.target.value);
+  };
+  const subscribe = () => {
+    const requestData = JSON.stringify({ email });
+    dispatch(sendNotification(requestData));
+  };
   return (
     <div>
       <div className="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5">
@@ -20,7 +43,10 @@ function Footer() {
                   <i className="fa fa-phone-alt mr-2"></i>+012 345 6789
                 </p>
                 <p>
-                  <a href="mailto:briskly.learn@mail.ru"><i className="fa fa-envelope mr-2"></i> briskly.learn@mail.ru</a>
+                  <a href="mailto:briskly.learn@mail.ru">
+                    <i className="fa fa-envelope mr-2"></i>{' '}
+                    briskly.learn@mail.ru
+                  </a>
                 </p>
                 <div className="d-flex justify-content-start mt-4">
                   <div className="btn btn-outline-light btn-square mr-2">
@@ -47,20 +73,31 @@ function Footer() {
               Хотите получать новости?
             </h5>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
-              consectetur ratione, repellat unde odio quia ad aliquid quos
-              quidem harum.
+              Подпишитесь на уведомления, чтобы быть вкурсе всех свежих новостей
+              и акций
             </p>
             <div className="w-100">
               <div className="input-group">
                 <input
-                  type="text"
+                  type="email"
+                  onChange={emailHandle}
+                  value={email}
                   className="form-control border-light"
                   style={{ padding: 30 }}
                   placeholder="Ваш Email"
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-primary px-4">Подписаться</button>
+                  <button
+                    onClick={subscribe}
+                    className="btn btn-primary px-4"
+                    style={{ width: '150px' }}
+                  >
+                    {loading ? (
+                      <Loader width={30} height={30} variant={'light'} />
+                    ) : (
+                      'Подписаться'
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
@@ -84,6 +121,7 @@ function Footer() {
           </div>
         </div>
       </div>
+      <Modal />
     </div>
   );
 }

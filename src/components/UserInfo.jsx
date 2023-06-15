@@ -16,6 +16,10 @@ function UserInfo() {
     dispatch(confirmLogin());
   }, [dispatch]);
 
+  const logout = () => {
+    fetch('http://localhost:8010/proxy/api/auth/logout');
+  };
+
   return (
     <div className="col-lg-3 text-right">
       <div
@@ -52,7 +56,7 @@ function UserInfo() {
                       Профиль
                     </Link>
                   </Dropdown.Item>
-                  <Dropdown.Item>Выйти</Dropdown.Item>
+                  <Dropdown.Item onClick={logout}>Выйти</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             ) : (

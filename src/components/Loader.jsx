@@ -1,6 +1,6 @@
 import { Spinner } from 'react-bootstrap';
 
-function Loader({ width, height }) {
+function Loader({ width, height, variant }) {
   return (
     <Spinner
       style={
@@ -9,7 +9,7 @@ function Loader({ width, height }) {
           : { width: '150px', height: '150px' }
       }
       animation="border"
-      variant="primary"
+      variant={variant ? variant : 'primary'}
       role="status"
     />
   );

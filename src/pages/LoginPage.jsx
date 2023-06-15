@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../store/slices/profileSlice';
 import Loader from '../components/Loader';
-import { showModal } from '../store/slices/errorModalSlice';
-import ErrorModal from '../components/ErrorModal';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -19,9 +17,6 @@ function LoginPage() {
   useEffect(() => {
     if (user) {
       navigate(-1);
-    }
-    if (error) {
-      dispatch(showModal(error));
     }
   }, [user, navigate, error, dispatch]);
 
@@ -66,6 +61,14 @@ function LoginPage() {
                 type="password"
                 placeholder="Введите пароль"
               />
+              {error && (
+                <span
+                  className="mt-2"
+                  style={{ display: 'block', color: 'red' }}
+                >
+                  {error[0]}
+                </span>
+              )}
             </Form.Group>
             <Button variant="primary" type="submit">
               Войти
@@ -77,7 +80,6 @@ function LoginPage() {
               <Link to="/">На главную</Link>
             </Form.Group>
           </Form>
-          <ErrorModal />
         </div>
       )}
     </>

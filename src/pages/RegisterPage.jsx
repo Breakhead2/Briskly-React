@@ -4,8 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
 import { register } from '../store/slices/profileSlice';
-import ErrorModal from '../components/ErrorModal';
-import { showModal } from '../store/slices/errorModalSlice';
 
 function RegisterPage() {
   const loading = useSelector((state) => state.profile.loading);
@@ -20,8 +18,6 @@ function RegisterPage() {
 
   useEffect(() => {
     if (user) navigate('/');
-
-    if (error.length) dispatch(showModal(error));
   }, [user, navigate, dispatch, error]);
 
   const nameHandle = (e) => {
@@ -85,6 +81,14 @@ function RegisterPage() {
                 type="password"
                 placeholder="Повторите пароль"
               />
+              {error && (
+                <span
+                  className="mt-2"
+                  style={{ display: 'block', color: 'red' }}
+                >
+                  {error[0]}
+                </span>
+              )}
             </Form.Group>
             <Button variant="primary" type="submit">
               Зарегистрироваться
@@ -96,7 +100,6 @@ function RegisterPage() {
               <Link to="/">На главную</Link>
             </Form.Group>
           </Form>
-          <ErrorModal />
         </div>
       )}
     </>
