@@ -41,13 +41,28 @@ export const register = createAsyncThunk(
   }
 );
 
+export const confirmLogin = createAsyncThunk(
+  'profile/confirmLogin',
+  async function () {
+    await fetch('https://breakhd2.store/sanctum/csrf-cookie');
+
+    const response = await fetch('http://localhost:8010/proxy/api/get/user', {
+      headers: { Accept: 'application/json' },
+    });
+
+    const data = await response.json();
+
+    return data;
+  }
+);
+
 const profileSlice = createSlice({
   name: 'profile',
   initialState: {
     user: null,
     profile: null,
     loading: false,
-    error: [],
+    error: null,
   },
   extraReducers: {
     [login.pending]: (state) => {
@@ -64,7 +79,7 @@ const profileSlice = createSlice({
       state.loading = false;
     },
     [login.rejected]: (state, action) => {
-      state.error = action.payload[0];
+      state.error = action.payload;
     },
     [register.pending]: (state) => {
       state.loading = true;
@@ -80,7 +95,20 @@ const profileSlice = createSlice({
       state.loading = false;
     },
     [register.rejected]: (state, action) => {
-      state.error = action.payload[0];
+      state.error = action.payload;
+    },
+    [confirmLogin.pending]: (state) => {
+      state.loading = true;
+    },
+    [confirmLogin.fulfilled]: (state, action) => {
+      state.user = action.payload.user;
+      state.profile = action.payload.profile;
+      state.loading = false;
+    },
+    [confirmLogin.rejected]: (state, action) => {
+      state.user = null;
+      state.profile = null;
+      state.error = action.payload;
     },
   },
 });
