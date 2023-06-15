@@ -1,10 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Loader from './../Loader';
+import Loader from './Loader';
+import { useEffect } from 'react';
+import { fetchCourses } from '../store/slices/coursesSlice';
 
-function CourseComponent({ courses }) {
+function CourseComponent() {
   const loading = useSelector((state) => state.courses.loading);
+  const courses = useSelector((state) => state.courses.courses);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!courses.length) {
+      dispatch(fetchCourses());
+    }
+  });
 
   return (
     <div className="container-fluid text-center">
