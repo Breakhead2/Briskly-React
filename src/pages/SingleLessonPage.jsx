@@ -39,7 +39,7 @@ function SingleLessonPage() {
             ></iframe>
           </div>
           <h2 className="mb-5">Упражнения для закрепления материала</h2>
-          <Exercise questions={lesson?.questions} />
+          <Exercise questions={lesson?.questions} lessonId={id} />
           <button onClick={goBack} className="btn btn-primary px-4">
             Список уроков
           </button>

@@ -2,8 +2,9 @@ import TestComponent from './TestComponent';
 import '../../styles/index.scss';
 import { useEffect, useState } from 'react';
 import PopupComponent from './PopupComponent';
+import axios from 'axios';
 
-function Exercise({ questions }) {
+function Exercise({ questions, lessonId }) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const [counter, setCounter] = useState(0);
@@ -17,6 +18,26 @@ function Exercise({ questions }) {
       setData(questions);
     }
   }, [questions]);
+
+  useEffect(() => {
+    if (isEnd) {
+      if (repeat.length === 0 && points > 0) {
+        const data = {
+          points,
+          lessonId,
+        };
+        axios
+          .post('http://localhost:8010/proxy/api/send/points', data)
+          .then((response) => {
+            if (response.data.success) {
+              const spanId = document.getElementById('points');
+              spanId.innerText = response.data.profile.points;
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    }
+  }, [isEnd, repeat, points, lessonId]);
 
   const handleRepeat = () => {
     setIsEnd(false);

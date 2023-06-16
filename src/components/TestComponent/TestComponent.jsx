@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTest } from '../../store/slices/testSlice';
 import Loader from '../Loader';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function TestComponent({ testId }) {
   const [counter, setCounter] = useState(0);
@@ -22,6 +23,7 @@ function TestComponent({ testId }) {
     setIsEnd(false);
     setCounter(0);
     setPoints(0);
+    setErrors(0);
     const blocks = document.querySelectorAll('.block');
     for (let block of blocks) {
       block.className = 'block';
@@ -31,6 +33,27 @@ function TestComponent({ testId }) {
   useEffect(() => {
     dispatch(fetchTest(testId));
   }, [testId, dispatch]);
+
+  useEffect(() => {
+    if (isEnd) {
+      if (errors === 0 && points > 0) {
+        debugger;
+        const data = {
+          points,
+          testId,
+        };
+        axios
+          .post('http://localhost:8010/proxy/api/send/points', data)
+          .then((response) => {
+            if (response.data.success) {
+              const spanId = document.getElementById('points');
+              spanId.innerText = response.data.profile.points;
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    }
+  }, [isEnd, errors, points, testId]);
 
   return (
     <>
