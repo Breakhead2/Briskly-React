@@ -32,17 +32,17 @@ function UserInfo() {
           <>
             {profile ? (
               <Dropdown>
-                <div className="p-3 d-flex align-items-center border border-secondary rounded">
+                <div className="p-3 d-flex justify-content-center align-items-center border border-secondary rounded">
                   <img
                     src={profile.image_url}
                     alt="..."
                     style={{ width: '30px' }}
                   />
                   <h6 className="mb-0 ml-2">{profile.name}</h6>
-                  <span className="ml-3">
-                    55
+                  <div className="ml-3 d-flex justify-content-center align-items-center">
+                    <span id="points">{profile.points}</span>
                     <i className="fa fa-bolt text-primary ml-1"></i>
-                  </span>
+                  </div>
                   <Dropdown.Toggle
                     variant="secondary"
                     id="dropdown-basic"

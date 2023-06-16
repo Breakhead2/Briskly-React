@@ -23,6 +23,7 @@ function TestComponent({ testId }) {
     setIsEnd(false);
     setCounter(0);
     setPoints(0);
+    setErrors(0);
     const blocks = document.querySelectorAll('.block');
     for (let block of blocks) {
       block.className = 'block';
@@ -36,6 +37,7 @@ function TestComponent({ testId }) {
   useEffect(() => {
     if (isEnd) {
       if (errors === 0 && points > 0) {
+        debugger;
         const data = {
           points,
           testId,
@@ -44,8 +46,8 @@ function TestComponent({ testId }) {
           .post('http://localhost:8010/proxy/api/send/points', data)
           .then((response) => {
             if (response.data.success) {
-              console.log(response.data);
-              //TODO находить блок с баллами и менять его значение
+              const spanId = document.getElementById('points');
+              spanId.innerText = response.data.profile.points;
             }
           })
           .catch((error) => console.log(error));
