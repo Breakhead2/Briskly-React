@@ -1,8 +1,6 @@
 import declension from '../../services/declension';
 
 const PopupComponent = ({ points, questions, handleRepeat, repeat, test }) => {
-  console.log(repeat.length === undefined ? repeat !== 0 : repeat.length !== 0);
-  debugger;
   const handleOnClick = () => {
     const popup = document.querySelector('.popup');
     popup.classList.add('hidden');

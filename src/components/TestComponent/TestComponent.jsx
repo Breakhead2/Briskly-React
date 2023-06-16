@@ -37,7 +37,6 @@ function TestComponent({ testId }) {
   useEffect(() => {
     if (isEnd) {
       if (errors === 0 && points > 0) {
-        debugger;
         const data = {
           points,
           testId,
