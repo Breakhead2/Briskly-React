@@ -7,6 +7,7 @@ import { fetchTest } from '../../store/slices/testSlice';
 import Loader from '../Loader';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import getCookie from '../../services/getCookie';
 
 function TestComponent({ testId }) {
   const [counter, setCounter] = useState(0);
@@ -37,12 +38,16 @@ function TestComponent({ testId }) {
   useEffect(() => {
     if (isEnd) {
       if (errors === 0 && points > 0) {
-        const data = {
-          points,
-          testId,
-        };
         axios
-          .post('http://localhost:8010/proxy/api/send/points', data)
+          .get(
+            `http://localhost:8010/proxy/api/send/points?type=test&points=${points}&testId=${testId}`,
+            {
+              headers: {
+                Accept: 'application/json',
+                Authorization: `Bearer ${getCookie('api')}`,
+              },
+            }
+          )
           .then((response) => {
             if (response.data.success) {
               const spanId = document.getElementById('points');

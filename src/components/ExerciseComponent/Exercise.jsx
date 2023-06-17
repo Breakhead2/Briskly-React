@@ -3,6 +3,7 @@ import '../../styles/index.scss';
 import { useEffect, useState } from 'react';
 import PopupComponent from './PopupComponent';
 import axios from 'axios';
+import getCookie from '../../services/getCookie';
 
 function Exercise({ questions, lessonId }) {
   const [loading, setLoading] = useState(true);
@@ -22,12 +23,16 @@ function Exercise({ questions, lessonId }) {
   useEffect(() => {
     if (isEnd) {
       if (repeat.length === 0 && points > 0) {
-        const data = {
-          points,
-          lessonId,
-        };
         axios
-          .post('http://localhost:8010/proxy/api/send/points', data)
+          .get(
+            `http://localhost:8010/proxy/api/send/points?type=lesson&points=${points}&id=${lessonId}`,
+            {
+              headers: {
+                Accept: 'application/json',
+                Authorization: `Bearer ${getCookie('api')}`,
+              },
+            }
+          )
           .then((response) => {
             if (response.data.success) {
               const spanId = document.getElementById('points');
