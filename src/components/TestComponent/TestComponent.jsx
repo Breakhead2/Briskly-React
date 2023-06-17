@@ -40,7 +40,7 @@ function TestComponent({ testId }) {
       if (errors === 0 && points > 0) {
         axios
           .get(
-            `http://localhost:8010/proxy/api/send/points?type=test&points=${points}&testId=${testId}`,
+            `http://localhost:8010/proxy/api/send/points?type=test&points=${points}&id=${testId}`,
             {
               headers: {
                 Accept: 'application/json',
