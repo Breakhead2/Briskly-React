@@ -16,6 +16,7 @@ const lessonSlice = createSlice({
   name: 'lesson',
   initialState: {
     lesson: null,
+    complete: false,
     loading: false,
     error: false,
   },
