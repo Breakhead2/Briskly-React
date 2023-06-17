@@ -59,7 +59,7 @@ export const confirmLogin = createAsyncThunk(
 const profileSlice = createSlice({
   name: 'profile',
   initialState: {
-    user: null,
+    token: null,
     profile: null,
     loading: false,
     error: null,
@@ -74,7 +74,7 @@ const profileSlice = createSlice({
         state.loading = false;
         return;
       }
-      state.user = action.payload.data.user;
+      state.token = action.payload.data.token;
       state.profile = action.payload.data.profile;
       state.loading = false;
     },
@@ -90,7 +90,7 @@ const profileSlice = createSlice({
         state.loading = false;
         return;
       }
-      state.user = action.payload.user;
+      state.token = action.payload.token;
       state.profile = action.payload.profile;
       state.loading = false;
     },
@@ -101,12 +101,12 @@ const profileSlice = createSlice({
       state.loading = true;
     },
     [confirmLogin.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
+      state.token = action.payload.token;
       state.profile = action.payload.profile;
       state.loading = false;
     },
     [confirmLogin.rejected]: (state, action) => {
-      state.user = null;
+      state.token = null;
       state.profile = null;
       state.error = action.payload;
     },

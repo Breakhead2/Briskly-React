@@ -8,17 +8,17 @@ import Loader from '../components/Loader';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const user = useSelector((state) => state.profile.user);
+  const profile = useSelector((state) => state.profile.profile);
   const loading = useSelector((state) => state.profile.loading);
   const error = useSelector((state) => state.profile.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (profile) {
       navigate(-1);
     }
-  }, [user, navigate, error, dispatch]);
+  }, [profile, navigate, error, dispatch]);
 
   const emailHandle = (e) => {
     setEmail(e.target.value);
