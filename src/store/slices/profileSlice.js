@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import getCookie from '../../services/getCookie';
 
 export const login = createAsyncThunk(
   'profile/login',
@@ -43,13 +44,11 @@ export const register = createAsyncThunk(
 
 export const confirmLogin = createAsyncThunk(
   'profile/confirmLogin',
-  async function (token) {
-    await fetch('https://breakhd2.store/sanctum/csrf-cookie');
-
+  async function () {
     const response = await fetch('http://localhost:8010/proxy/api/get/user', {
       headers: {
         Accept: 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${getCookie('api')}`,
       },
     });
 

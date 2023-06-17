@@ -2,16 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const sendNotification = createAsyncThunk(
   'notification/subscribe',
-  async function (requestData) {
-    const response = await fetch('http://localhost:8010/proxy/api/send/mail', {
-      method: 'POST',
-      body: requestData,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  async function (email) {
+    const response = await fetch(
+      `http://localhost:8010/proxy/api/send/mail?email=${email}`
+    );
     const data = await response.json();
-
     return data;
   }
 );

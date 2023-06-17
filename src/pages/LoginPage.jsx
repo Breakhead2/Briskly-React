@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../store/slices/profileSlice';
 import Loader from '../components/Loader';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const profile = useSelector((state) => state.profile.profile);
-  const loading = useSelector((state) => state.profile.loading);
-  const error = useSelector((state) => state.profile.error);
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,7 +31,26 @@ function LoginPage() {
 
   const submitHandle = (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    setLoading(true);
+    axios
+      .get('https://breakhd2.store/sanctum/csrf-cookie')
+      .then((csrfResponse) => {
+        const authData = {
+          email,
+          password,
+        };
+        axios
+          .post('http://localhost:8010/proxy/api/auth/login', authData)
+          .then((response) => {
+            if (response.data.success) {
+              setProfile(response.data.data.profile);
+              document.cookie = `api=${response.data.data.token}; path=/`;
+            } else {
+              setError(response.data.errors);
+            }
+            setLoading(false);
+          });
+      });
   };
 
   return (

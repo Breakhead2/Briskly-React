@@ -1,24 +1,25 @@
 import { Form, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
-import { register } from '../store/slices/profileSlice';
 
 function RegisterPage() {
-  const loading = useSelector((state) => state.profile.loading);
-  const user = useSelector((state) => state.profile.user);
-  const error = useSelector((state) => state.profile.error);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) navigate('/');
-  }, [user, navigate, dispatch, error]);
+    if (profile) navigate('/');
+  }, [profile, navigate, dispatch, error]);
 
   const nameHandle = (e) => {
     setName(e.target.value);
@@ -34,8 +35,30 @@ function RegisterPage() {
   };
   const submitHandle = (e) => {
     e.preventDefault();
-    dispatch(register({ name, email, password, repeat_pass: confirmPassword }));
+    setLoading(true);
+    axios
+      .get('https://breakhd2.store/sanctum/csrf-cookie')
+      .then((csrfResponse) => {
+        const authData = {
+          name,
+          email,
+          password,
+          repeat_pass: confirmPassword,
+        };
+        axios
+          .post('http://localhost:8010/proxy/api/auth/register', authData)
+          .then((response) => {
+            if (response.data.success) {
+              setProfile(response.data.data.profile);
+              document.cookie = `api=${response.data.data.token}; path=/`;
+            } else {
+              setError(response.data.errors);
+            }
+            setLoading(false);
+          });
+      });
   };
+
   return (
     <>
       {loading ? (

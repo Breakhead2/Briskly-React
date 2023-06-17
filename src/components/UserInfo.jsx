@@ -5,26 +5,27 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { confirmLogin } from '../store/slices/profileSlice';
 import Loader from './Loader';
+import getCookie from '../services/getCookie';
+import removeCookie from '../services/removeCookie';
 
 function UserInfo() {
   const profile = useSelector((state) => state.profile.profile);
   const loading = useSelector((state) => state.profile.loading);
-  const token = useSelector((state) => state.profile.token);
-  console.log(localStorage.getItem('token'));
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(confirmLogin(token));
+    dispatch(confirmLogin());
   }, [dispatch]);
 
   const logout = () => {
     fetch('http://localhost:8010/proxy/api/auth/logout', {
       headers: {
         Accept: 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${getCookie('api')}`,
       },
     });
-    localStorage.removeItem('token');
+    removeCookie('api');
     window.location.reload();
   };
 

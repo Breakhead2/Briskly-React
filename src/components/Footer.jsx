@@ -10,18 +10,21 @@ function Footer() {
   const loading = useSelector((state) => state.notification.loading);
   const message = useSelector((state) => state.notification.message);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (message) {
       dispatch(showModal(message));
     }
   }, [dispatch, message]);
+
   const emailHandle = (e) => {
     setEmail(e.target.value);
   };
   const subscribe = () => {
-    const requestData = JSON.stringify({ email });
-    dispatch(sendNotification(requestData));
+    dispatch(sendNotification(email));
+    setEmail('');
   };
+
   return (
     <div>
       <div className="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5">
