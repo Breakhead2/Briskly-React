@@ -9,15 +9,23 @@ import Loader from './Loader';
 function UserInfo() {
   const profile = useSelector((state) => state.profile.profile);
   const loading = useSelector((state) => state.profile.loading);
-
+  const token = useSelector((state) => state.profile.token);
+  console.log(localStorage.getItem('token'));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(confirmLogin());
+    dispatch(confirmLogin(token));
   }, [dispatch]);
 
   const logout = () => {
-    fetch('http://localhost:8010/proxy/api/auth/logout');
+    fetch('http://localhost:8010/proxy/api/auth/logout', {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    localStorage.removeItem('token');
+    window.location.reload();
   };
 
   return (

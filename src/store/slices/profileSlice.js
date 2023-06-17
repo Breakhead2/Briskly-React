@@ -14,7 +14,7 @@ export const login = createAsyncThunk(
     });
 
     const authData = await response.json();
-
+    localStorage.setItem('token', authData.data.token);
     return authData;
   }
 );
@@ -43,11 +43,14 @@ export const register = createAsyncThunk(
 
 export const confirmLogin = createAsyncThunk(
   'profile/confirmLogin',
-  async function () {
+  async function (token) {
     await fetch('https://breakhd2.store/sanctum/csrf-cookie');
 
     const response = await fetch('http://localhost:8010/proxy/api/get/user', {
-      headers: { Accept: 'application/json' },
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
 
     const data = await response.json();
