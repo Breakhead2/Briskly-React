@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTests } from '../store/slices/allTestsSlice';
-import Loader from '../components/Loader';
 import CardComponent from '../components/CardComponent';
+import Sceleton from '../components/Sceleton';
 
 function TestsPage() {
   const dispatch = useDispatch();
@@ -15,11 +15,11 @@ function TestsPage() {
 
   return (
     <div className="container-fluid text-center">
+      <h2 className="mb-5">Тесты</h2>
       {loading ? (
-        <Loader />
+        <Sceleton />
       ) : (
         <>
-          <h2 className="mb-5">Тесты</h2>
           <div className="d-flex justify-content-center">
             <div className="row w-100">
               {tests.map(({ id, image_url, name }) => {

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,12 +13,14 @@ function UserInfo() {
   const loading = useSelector((state) => state.profile.loading);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(confirmLogin());
   }, [dispatch]);
 
   const logout = () => {
+    navigate('/');
     fetch('http://localhost:8010/proxy/api/auth/logout', {
       headers: {
         Accept: 'application/json',

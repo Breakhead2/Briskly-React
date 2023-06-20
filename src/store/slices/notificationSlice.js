@@ -17,6 +17,11 @@ const notificationSlice = createSlice({
     loading: false,
     message: null,
   },
+  reducers: {
+    clearMessage: (state) => {
+      state.message = null;
+    },
+  },
   extraReducers: {
     [sendNotification.pending]: (state) => {
       state.message = null;
@@ -33,5 +38,7 @@ const notificationSlice = createSlice({
     },
   },
 });
+
+export const { clearMessage } = notificationSlice.actions;
 
 export default notificationSlice.reducer;

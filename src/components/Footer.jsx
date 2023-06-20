@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendNotification } from '../store/slices/notificationSlice';
+import {
+  clearMessage,
+  sendNotification,
+} from '../store/slices/notificationSlice';
 import Modal from './Modal';
 import Loader from './Loader';
 import { showModal } from '../store/slices/modalSlice';
@@ -12,8 +15,9 @@ function Footer() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(clearMessage());
     if (message) {
-      dispatch(showModal(message));
+      dispatch(showModal({ message }));
     }
   }, [dispatch, message]);
 
