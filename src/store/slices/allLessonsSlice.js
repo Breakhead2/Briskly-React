@@ -4,7 +4,13 @@ export const fetchallLessons = createAsyncThunk(
   'lesson/fetchLessonsByCourseId',
   async function (courseId) {
     const response = await fetch(
-      `http://localhost:8010/proxy/api/get/lessons?id=${courseId}`
+      `http://localhost:8010/proxy/api/get/lessons?id=${courseId}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${getCookie('api')}`,
+        },
+      }
     );
     const data = await response.json();
 
