@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from './Loader';
 import { useEffect } from 'react';
 import { fetchCourses } from '../store/slices/coursesSlice';
 import CardComponent from './CardComponent';
+import Sceleton from './Sceleton';
 
 function CourseComponent({ count }) {
   const loading = useSelector((state) => state.courses.loading);
   const courses = useSelector((state) => state.courses.courses);
+  const profile = useSelector((state) => state.profile.profile);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,11 +18,11 @@ function CourseComponent({ count }) {
 
   return (
     <div className="container-fluid text-center">
+      <h2 className="mb-5">Курсы</h2>
       {loading ? (
-        <Loader />
+        <Sceleton />
       ) : (
         <>
-          <h2 className="mb-5">Курсы</h2>
           <div className="d-flex justify-content-center">
             <div className="row w-100">
               {count ? (
@@ -34,6 +35,7 @@ function CourseComponent({ count }) {
                       title={name}
                       description={description}
                       linkPath={`/courses/${id}`}
+                      userRequire={profile ? false : true}
                     />
                   ))
               ) : (
@@ -45,6 +47,7 @@ function CourseComponent({ count }) {
                       title={name}
                       description={description}
                       linkPath={`/courses/${id}`}
+                      userRequire={profile ? false : true}
                     />
                   ))}
                 </>

@@ -14,6 +14,7 @@ import LessonsPage from '../pages/LessonsPage';
 import SingleLessonPage from '../pages/SingleLessonPage';
 import SingleTestPage from '../pages/SingleTestPage';
 import ProfilePage from '../pages/ProfilePage';
+import AuthRequire from '../hoc/AuthRequire';
 
 function App() {
   return (
@@ -25,8 +26,14 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
-        <Route path="/courses/:id" element={<LessonsPage />} />
-        <Route path="/lessons/:id" element={<SingleLessonPage />} />
+        <Route
+          path="/courses/:id"
+          element={<AuthRequire children={<LessonsPage />} />}
+        />
+        <Route
+          path="/lessons/:id"
+          element={<AuthRequire children={<SingleLessonPage />} />}
+        />
         <Route path="/tests" element={<TestsPage />} />
         <Route path="/articles" element={<ArticlesPage />} />
         <Route path="/about" element={<AboutPage />} />

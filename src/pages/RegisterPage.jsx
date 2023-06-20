@@ -1,25 +1,35 @@
 import { Form, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// import axios from 'axios';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
+import { register } from '../store/slices/profileSlice';
 
 function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [profile, setProfile] = useState(null);
-  const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  // const [profile, setProfile] = useState(null);
+  // const [error, setError] = useState(null);
+  const profile = useSelector((state) => state.profile.profile);
+  const loading = useSelector((state) => state.profile.loading);
+  const error = useSelector((state) => state.profile.error);
 
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const fromPage = location.state?.from || '/';
+
   useEffect(() => {
-    if (profile) navigate('/');
-  }, [profile, navigate, dispatch, error]);
+    console.log(fromPage);
+    if (profile) {
+      navigate(fromPage);
+    }
+  }, [profile, navigate, fromPage]);
 
   const nameHandle = (e) => {
     setName(e.target.value);
@@ -35,28 +45,36 @@ function RegisterPage() {
   };
   const submitHandle = (e) => {
     e.preventDefault();
-    setLoading(true);
-    axios
-      .get('https://breakhd2.store/sanctum/csrf-cookie')
-      .then((csrfResponse) => {
-        const authData = {
-          name,
-          email,
-          password,
-          repeat_pass: confirmPassword,
-        };
-        axios
-          .post('http://localhost:8010/proxy/api/auth/register', authData)
-          .then((response) => {
-            if (response.data.success) {
-              setProfile(response.data.data.profile);
-              document.cookie = `api=${response.data.data.token}; path=/`;
-            } else {
-              setError(response.data.errors);
-            }
-            setLoading(false);
-          });
-      });
+    dispatch(
+      register({
+        name,
+        email,
+        password,
+        repeat_pass: confirmPassword,
+      })
+    );
+    // setLoading(true);
+    // axios
+    //   .get('https://breakhd2.store/sanctum/csrf-cookie')
+    //   .then((csrfResponse) => {
+    //     const authData = {
+    //       name,
+    //       email,
+    //       password,
+    //       repeat_pass: confirmPassword,
+    //     };
+    //     axios
+    //       .post('http://localhost:8010/proxy/api/auth/register', authData)
+    //       .then((response) => {
+    //         if (response.data.success) {
+    //           setProfile(response.data.data.profile);
+    //           document.cookie = `api=${response.data.data.token}; path=/`;
+    //         } else {
+    //           setError(response.data.errors);
+    //         }
+    //         setLoading(false);
+    //       });
+    //   });
   };
 
   return (

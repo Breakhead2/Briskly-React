@@ -1,44 +1,37 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import getCookie from '../../services/getCookie';
+import axios from 'axios';
 
 export const login = createAsyncThunk(
   'profile/login',
-  async function (userData) {
-    await fetch('https://breakhd2.store/sanctum/csrf-cookie');
-
-    const response = await fetch('http://localhost:8010/proxy/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
-
-    const authData = await response.json();
-    localStorage.setItem('token', authData.data.token);
-    return authData;
+  async function (authData) {
+    await axios.get('https://breakhd2.store/sanctum/csrf-cookie');
+    const response = await axios.post(
+      'http://localhost:8010/proxy/api/auth/login',
+      authData
+    );
+    if (response.data.success) {
+      document.cookie = `api=${response.data.data.token}; path=/`;
+    }
+    return response.data;
   }
 );
 
 export const register = createAsyncThunk(
   'profile/register',
-  async function (registerData) {
-    await fetch('https://breakhd2.store/sanctum/csrf-cookie');
+  async function (authData) {
+    await axios.get('https://breakhd2.store/sanctum/csrf-cookie');
 
-    const response = await fetch(
+    const response = await axios.post(
       'http://localhost:8010/proxy/api/auth/register',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(registerData),
-      }
+      authData
     );
 
-    const authData = await response.json();
+    if (response.data.success) {
+      document.cookie = `api=${response.data.data.token}; path=/`;
+    }
 
-    return authData;
+    return response.data;
   }
 );
 
@@ -92,8 +85,8 @@ const profileSlice = createSlice({
         state.loading = false;
         return;
       }
-      state.token = action.payload.token;
-      state.profile = action.payload.profile;
+      state.token = action.payload.data.token;
+      state.profile = action.payload.data.profile;
       state.loading = false;
     },
     [register.rejected]: (state, action) => {
