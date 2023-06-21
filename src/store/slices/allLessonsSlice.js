@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import getCookie from '../../services/getCookie';
 
 export const fetchallLessons = createAsyncThunk(
   'lesson/fetchLessonsByCourseId',
