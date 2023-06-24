@@ -1,6 +1,6 @@
 // eslint-disable-next-line
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css");
 
 /******* Bootstrap Theming ********/
 
@@ -9,7 +9,7 @@ $secondary: #f2f1f8;
 $light: #ffffff;
 $dark: #44425a;
 
-$font-family-sans-serif: 'Poppins', sans-serif;
+$font-family-sans-serif: "Poppins", sans-serif;
 
 $body-color: #6c6a74;
 
@@ -19,7 +19,7 @@ $enable-responsive-font-sizes: true;
 
 $border-radius: 8px;
 
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
 
 /********** Custom CSS ************/
 
@@ -216,7 +216,7 @@ h6,
 
 .testimonial-carousel .owl-dot::after {
   position: absolute;
-  content: '';
+  content: "";
   top: -5px;
   right: -5px;
   bottom: -5px;
@@ -370,8 +370,19 @@ button:active {
   padding: 0 20px;
   text-align: left;
 }
+.lesson_content ul,
+ol {
+  margin-top: 12px;
+}
+.lesson_content ul > li {
+  padding-bottom: 12px;
+}
+.lesson_content ol > li {
+  padding-bottom: 12px;
+}
 .lesson_content_subheading {
   font-weight: 700;
+  font-size: 20px;
 }
 .lesson_content_marker {
   font-weight: 900;
@@ -382,7 +393,26 @@ button:active {
   font-weight: 700;
   margin: 15px 0;
 }
-
+.lesson_content__table {
+  text-align: center;
+  margin: 16px 0;
+}
+.lesson_content__table .table__heading {
+  background-color: #d95700;
+  color: #fff;
+}
+.lesson_content__table td {
+  padding: 8px;
+  background-color: #dff7dd;
+  border: 1px solid #fff;
+}
+.lesson_content__table th {
+  padding: 8px 16px;
+  border: 1px solid #fff;
+}
+.lesson_content__table.last-table {
+  margin-bottom: 32px;
+}
 @media (max-width: 541px) {
   .video_container > iframe {
     width: 100%;

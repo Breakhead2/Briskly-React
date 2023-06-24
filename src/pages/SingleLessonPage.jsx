@@ -1,9 +1,9 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Exercise from '../components/ExerciseComponent/Exercise';
-import { fetchLesson } from '../store/slices/lessonSlice';
-import Loader from '../components/Loader';
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Exercise from "../components/ExerciseComponent/Exercise";
+import { fetchLesson } from "../store/slices/lessonSlice";
+import Loader from "../components/Loader";
 
 function SingleLessonPage() {
   const { id } = useParams();
