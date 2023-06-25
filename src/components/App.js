@@ -1,20 +1,21 @@
-import { Routes, Route } from 'react-router-dom';
-import AuthLayout from './AuthLayout';
-import RegisterPage from '../pages/RegisterPage';
-import LoginPage from '../pages/LoginPage';
-import Layout from './Layout';
-import HomePage from '../pages/HomePage';
-import CoursesPage from '../pages/CoursesPage';
-import TestsPage from '../pages/TestsPage';
-import ArticlesPage from '../pages/ArticlesPage';
-import AboutPage from '../pages/AboutPage';
-import ContactsPage from '../pages/ContactsPage';
-import NotFoundPage from '../pages/NotFoundPage';
-import LessonsPage from '../pages/LessonsPage';
-import SingleLessonPage from '../pages/SingleLessonPage';
-import SingleTestPage from '../pages/SingleTestPage';
-import ProfilePage from '../pages/ProfilePage';
-import AuthRequire from '../hoc/AuthRequire';
+import { Routes, Route } from "react-router-dom";
+import AuthLayout from "./AuthLayout";
+import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "../pages/LoginPage";
+import Layout from "./Layout";
+import HomePage from "../pages/HomePage";
+import CoursesPage from "../pages/CoursesPage";
+import TestsPage from "../pages/TestsPage";
+import ArticlesPage from "../pages/ArticlesPage";
+import AboutPage from "../pages/AboutPage";
+import ContactsPage from "../pages/ContactsPage";
+import NotFoundPage from "../pages/NotFoundPage";
+import LessonsPage from "../pages/LessonsPage";
+import SingleLessonPage from "../pages/SingleLessonPage";
+import SingleTestPage from "../pages/SingleTestPage";
+import ProfilePage from "../pages/ProfilePage";
+import AuthRequire from "../hoc/AuthRequire";
+import SingleArticlePage from "../pages/SingleArticlePage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         />
         <Route path="/tests" element={<TestsPage />} />
         <Route path="/articles" element={<ArticlesPage />} />
+        <Route path="/articles/:id" element={<SingleArticlePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/tests/:id" element={<SingleTestPage />} />
