@@ -30,6 +30,14 @@ function WordsComponent({ words }) {
             Accept: "application/json",
             Authorization: `Bearer ${getCookie("api")}`,
           },
+        }).then((response) => {
+          if (response.data.success) {
+            dispatch(
+              showModal({
+                message: response.data.message,
+              })
+            );
+          }
         });
       }
     }
