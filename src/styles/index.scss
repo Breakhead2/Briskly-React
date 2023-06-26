@@ -427,8 +427,9 @@ ol {
 
 // single page article
 .image-banner {
-  width: 100%;
+  width: 800px;
   height: 400px;
+  margin: 0 auto;
 }
 .image-banner img {
   width: 100%;
@@ -440,6 +441,8 @@ ol {
 
 @media (max-width: 426px) {
   .image-banner {
-    height: 250px;
+    height: auto;
+    width: 100%;
   }
 }
+
