@@ -41,6 +41,11 @@ h6,
   font-weight: 500 !important;
 }
 
+.main-logo {
+  height: calc(3rem + 3vw);
+  object-fit: cover;
+}
+
 .btn-square {
   width: 36px;
   height: 36px;
