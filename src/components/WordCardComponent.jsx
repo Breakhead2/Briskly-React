@@ -23,7 +23,7 @@ function WordCardComponent({ setRepeatWords }) {
         <div className="word__tools">
           <BsTrash />
           <BsFillPencilFill />
-          <BsFillStarFill onClick={() => console.log("test")} />
+          <BsFillStarFill onClick={addRepeatWord} />
         </div>
         <Card.Body>
           <Card.Title>Value</Card.Title>

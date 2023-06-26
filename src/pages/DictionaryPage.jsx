@@ -25,7 +25,7 @@ function DictionaryPage() {
         <button className="btn btn-primary px-4">Тренировать слова</button>
       </div>
       <div>
-        <h4 className="dictionary__subheading mb-4">Коллекции слов</h4>
+        <h4 className="dictionary__subheading mb-4">Коллекция слов</h4>
         <div className="d-flex justify-content-center">
           <div className="row w-100">
             <WordCardComponent setRepeatWords={setRepeatWords} />
