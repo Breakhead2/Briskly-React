@@ -451,3 +451,77 @@ ol {
   }
 }
 
+// dictionary
+
+.dictionary__heading {
+  text-align: center;
+  margin-top: 30px;
+}
+.dictionary__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 54px;
+}
+.dictionary__toolbar_statistic p {
+  margin: 0;
+  text-align: left;
+  color: #44425a;
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.dictionary__toolbar_statistic p:last-of-type {
+  padding-bottom: 0;
+}
+.dictionary__toolbar_statistic {
+  background-color: #dff7dd;
+  padding: 32px;
+  border-radius: 8px;
+}
+.words {
+  padding: 4px 8px;
+  border-radius: 16px;
+  color: #fff;
+}
+.words.words-red {
+  background-color: green;
+}
+.words.words-green {
+  background-color: yellowgreen;
+}
+.dictionary__subheading {
+  margin-top: 30px;
+  text-align: center;
+  font-weight: normal;
+}
+.word__image-contaner {
+  height: 225px;
+  width: 450px;
+}
+.word__image-contaner img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+}
+.word__tools {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 30px;
+  color: white;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.word__tools svg {
+  transition: all linear 0.3s;
+  cursor: pointer;
+}
+.word__tools svg:hover {
+  color: #ff6600;
+}

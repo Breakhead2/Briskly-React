@@ -1,16 +1,16 @@
-import { NavLink } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
-import UserInfo from './UserInfo';
+import { NavLink } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
+import UserInfo from "./UserInfo";
 
 function NavBar() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid shadow-sm bg-white rounded">
       <div className="row border-top">
         <div className="px-3">
           <Navbar bg="light" expand="lg">
             <Navbar.Toggle
               aria-controls="basic-navbar-nav"
-              style={{ float: 'right' }}
+              style={{ float: "right" }}
             />
             <Navbar.Collapse id="basic-navbar-nav" className="pt-3 pt-lg-0">
               <div className="d-lg-none">
