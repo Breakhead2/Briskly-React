@@ -24,25 +24,33 @@ function LessonsPage() {
         <Sceleton />
       ) : (
         <>
-          <div className="d-flex justify-content-center">
-            <div className="row w-100">
-              {lessons.map(({ id, image, heading }) => {
-                let complete;
-                passLessons.find((passId) => passId === id) === id
-                  ? (complete = true)
-                  : (complete = false);
-                return (
-                  <CardComponent
-                    key={id}
-                    img={image}
-                    title={heading}
-                    complete={complete}
-                    linkPath={`/lessons/${id}`}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          {lessons.length ? (
+            <>
+              <div className="d-flex justify-content-center">
+                <div className="row w-100">
+                  {lessons.map(({ id, image, heading }) => {
+                    let complete;
+                    passLessons.find((passId) => passId === id) === id
+                      ? (complete = true)
+                      : (complete = false);
+                    return (
+                      <CardComponent
+                        key={id}
+                        img={image}
+                        title={heading}
+                        complete={complete}
+                        linkPath={`/lessons/${id}`}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            </>
+          ) : (
+            <h3 className="pb-5">
+              Пока пусто, но скоро добавим. Оставайтесь с нами)
+            </h3>
+          )}
         </>
       )}
     </div>

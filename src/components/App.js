@@ -41,7 +41,10 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/tests/:id" element={<SingleTestPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route
+          path="/profile"
+          element={<AuthRequire children={<ProfilePage />} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

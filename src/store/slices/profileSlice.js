@@ -51,11 +51,31 @@ export const confirmLogin = createAsyncThunk(
   }
 );
 
+export const getProfile = createAsyncThunk(
+  'profile/getProfile',
+  async function () {
+    const response = await fetch(
+      'http://localhost:8010/proxy/api/get/profile',
+      {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${getCookie('api')}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    return data;
+  }
+);
+
 const profileSlice = createSlice({
   name: 'profile',
   initialState: {
     token: null,
     profile: null,
+    profilePageData: null,
     loading: false,
     error: null,
   },
@@ -104,6 +124,13 @@ const profileSlice = createSlice({
       state.token = null;
       state.profile = null;
       state.error = action.payload;
+    },
+    [getProfile.pending]: (state) => {
+      state.loading = true;
+    },
+    [getProfile.fulfilled]: (state, action) => {
+      state.profilePageData = action.payload.profile;
+      state.loading = false;
     },
   },
 });
