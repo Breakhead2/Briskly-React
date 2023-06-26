@@ -1,24 +1,37 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import CustomCheckbox from "../CustomChechbox/CustomCheckbox";
 import style from "./WordsComponent.module.css";
 import getCookie from "../../services/getCookie";
+import { showModal } from "../../store/slices/modalSlice";
 
 function WordsComponent({ words }) {
   const [learnWordsId, setLearnWordsId] = useState([]);
   const [checkedAll, setCheckedAll] = useState(false);
+  const profile = useSelector((state) => state.profile.profile);
+  const dispatch = useDispatch();
 
   const sendWord = () => {
-    if (learnWordsId.length) {
-      const body = {
-        words: learnWordsId,
-      };
-      axios.post("http://localhost:8010/proxy/api/send/words", body, {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${getCookie("api")}`,
-        },
-      });
+    if (!profile) {
+      dispatch(
+        showModal({
+          reason: "authRequire",
+          message: "Действие доступно только для авторизованных пользователей",
+        })
+      );
+    } else {
+      if (learnWordsId.length) {
+        const body = {
+          words: learnWordsId,
+        };
+        axios.post("http://localhost:8010/proxy/api/send/words", body, {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${getCookie("api")}`,
+          },
+        });
+      }
     }
   };
   const handlerAddWord = (e) => {
