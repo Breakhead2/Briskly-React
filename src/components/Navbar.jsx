@@ -1,26 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
+import UserInfo from './UserInfo';
 
 function NavBar() {
   return (
     <div className="container-fluid">
-      <div className="row border-top px-xl-5">
-        <div className="col-lg-12">
+      <div className="row border-top">
+        <div className="px-3">
           <Navbar bg="light" expand="lg">
-            <Navbar.Brand>
-              <img
-                className="d-lg-none"
-                src="/img/BrisklyLogo.svg"
-                alt="BrisklyLearn"
-                width="40"
-              />
-            </Navbar.Brand>
             <Navbar.Toggle
               aria-controls="basic-navbar-nav"
               style={{ float: 'right' }}
             />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
+            <Navbar.Collapse id="basic-navbar-nav" className="pt-3 pt-lg-0">
+              <div className="d-lg-none">
+                <UserInfo />
+              </div>
+              <Nav className="mr-auto py-3 py-lg-0">
                 <NavLink to="/" className="nav-item nav-link">
                   Главная
                 </NavLink>

@@ -32,11 +32,8 @@ function UserInfo() {
   };
 
   return (
-    <div className="col-lg-3 text-right">
-      <div
-        className="d-flex align-items-center justify-content-end"
-        style={{ height: '100%' }}
-      >
+    <div className="text-right">
+      <div className="d-flex align-items-center" style={{ height: '100%' }}>
         {loading ? (
           <Loader width={30} height={30} />
         ) : (
@@ -72,7 +69,7 @@ function UserInfo() {
               </Dropdown>
             ) : (
               <Link
-                className="btn py-2 px-4 ml-auto d-none d-lg-block"
+                className="btn py-2 px-4 d-block"
                 to="/auth/login"
                 style={{
                   color: 'white',

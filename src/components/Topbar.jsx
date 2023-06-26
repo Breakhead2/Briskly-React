@@ -3,16 +3,16 @@ import UserInfo from './UserInfo';
 
 function Topbar() {
   return (
-    <div className="container-fluid d-none d-lg-block">
-      <div className="row align-items-between py-4 px-xl-5">
-        <div className="col-lg-9">
+    <div className="container-fluid d-lg-block">
+      <div className="d-flex justify-content-between py-4 px-3">
+        <div className="">
           <Link
             to="/"
-            className="text-decoration-none d-flex overflow-hidden h-100px"
+            className="text-decoration-none d-flex align-items-center overflow-hidden"
             style={{ height: '100px' }}
           >
-            <img src="/img/BrisklyLogo.svg" alt="" />
-            <div className="px-1">
+            <img className="main-logo" src="/img/BrisklyLogo.svg" alt="" />
+            <div className="px-1 d-flex flex-column justify-content-center">
               <h1 className="m-0">
                 <span className="text-primary">B</span>RISKLY
               </h1>
@@ -38,7 +38,9 @@ function Topbar() {
             </div>
           </div>
         </div> */}
-        <UserInfo />
+        <div className="d-lg-flex d-none">
+          <UserInfo />
+        </div>
       </div>
     </div>
   );
