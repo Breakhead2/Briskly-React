@@ -6,15 +6,16 @@ import CardComponent from '../components/CardComponent';
 import Sceleton from '../components/Sceleton';
 
 function LessonsPage() {
-  const { id } = useParams();
+  const { courseId } = useParams();
   const loading = useSelector((state) => state.allLessons.loading);
   const lessons = useSelector((state) => state.allLessons.lessons);
+  const passLessons = useSelector((state) => state.allLessons.passLessons);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchallLessons(id));
-  }, [dispatch, id]);
+    dispatch(fetchallLessons(courseId));
+  }, [dispatch, courseId]);
 
   return (
     <div className="container-fluid text-center">
@@ -26,12 +27,16 @@ function LessonsPage() {
           <div className="d-flex justify-content-center">
             <div className="row w-100">
               {lessons.map(({ id, image, heading }) => {
+                let complete;
+                passLessons.find((passId) => passId === id) === id
+                  ? (complete = true)
+                  : (complete = false);
                 return (
                   <CardComponent
                     key={id}
                     img={image}
                     title={heading}
-                    complete={true}
+                    complete={complete}
                     linkPath={`/lessons/${id}`}
                   />
                 );

@@ -15,7 +15,7 @@ export const fetchallLessons = createAsyncThunk(
     );
     const data = await response.json();
 
-    return data.lessons;
+    return data;
   }
 );
 
@@ -23,6 +23,7 @@ const allLessonsSlice = createSlice({
   name: 'allLessons',
   initialState: {
     lessons: [],
+    passLessons: [],
     loading: false,
     error: false,
   },
@@ -31,7 +32,8 @@ const allLessonsSlice = createSlice({
       state.loading = true;
     },
     [fetchallLessons.fulfilled]: (state, action) => {
-      state.lessons = action.payload;
+      state.lessons = action.payload.lessons;
+      state.passLessons = action.payload.pass_lessons;
       state.loading = false;
     },
     [fetchallLessons.rejected]: () => {},
