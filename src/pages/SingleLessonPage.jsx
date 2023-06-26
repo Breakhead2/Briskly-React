@@ -9,10 +9,11 @@ function SingleLessonPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const goBack = () => navigate(-1);
   const loading = useSelector((state) => state.lesson.loading);
   const lesson = useSelector((state) => state.lesson.lesson);
   const html = { __html: lesson?.lesson.text };
+  const courseId = lesson?.lesson.course_id;
+  const goBack = () => navigate(`/courses/${courseId}`);
 
   useEffect(() => {
     dispatch(fetchLesson(id));
