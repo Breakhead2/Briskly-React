@@ -13,7 +13,7 @@ export const fetchDictinary = createAsyncThunk(
         },
       }
     );
-    if (response.data.success) return response.data.words;
+    if (response.data.success) return response.data;
   }
 );
 
