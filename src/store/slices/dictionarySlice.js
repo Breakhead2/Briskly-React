@@ -17,6 +17,21 @@ export const fetchDictinary = createAsyncThunk(
   }
 );
 
+export const fetchRemoveWord = createAsyncThunk(
+  "dictionaty/fetchRemoveWord",
+  async function (wordId) {
+    const response = await axios.get(
+      `http://localhost:8010/proxy/api/remove/word?id=${wordId}`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${getCookie('api')}`,
+        },
+      }
+    );
+    if (response.data.success) return response.data;
+  }
+);
+
 const dictionarySlice = createSlice({
   name: "dictionary",
   initialState: {

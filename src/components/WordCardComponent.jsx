@@ -1,8 +1,8 @@
 import { Card } from "react-bootstrap";
 import { BsTrash, BsFillPencilFill, BsFillStarFill } from "react-icons/bs";
 
-function WordCardComponent({ addRepeatWord }) {
-
+function WordCardComponent({ addRepeatWord, value, translate, id, articleId, img }) {
+  console.log(img);
   const handlerRepeatWordsId = (e) => {
     const svg = e.target.closest('svg');
     svg.classList.toggle('active');
@@ -14,22 +14,23 @@ function WordCardComponent({ addRepeatWord }) {
       <Card
         className="h-100"
         style={{ overflow: "hidden", position: "relative" }}
-        data-word="1"
+        data-word={id}
       >
-        <Card.Img
-          variant="top"
-          src="/img/word_1.png"
-          alt="word"
-          style={{ objectFit: "cover" }}
-        />
+        <div className="word__image-contaner">
+          <Card.Img
+            variant="top"
+            src={img}
+            alt={value}
+          />
+        </div>
         <div className="word__tools">
           <BsTrash />
-          <BsFillPencilFill />
+          {!articleId && <BsFillPencilFill />}
           <BsFillStarFill onClick={handlerRepeatWordsId} />
         </div>
         <Card.Body>
-          <Card.Title>Value</Card.Title>
-          <Card.Text>Translate</Card.Text>
+          <Card.Title>{value}</Card.Title>
+          <Card.Text>{translate}</Card.Text>
         </Card.Body>
       </Card>
     </div>

@@ -38,7 +38,7 @@ function DictionaryPage() {
             </span>
           </p>
           <p>
-            Слов в словаре:
+            В словаре:
             <span className="words words-green" id="all_words">
               {declension(dictionary?.length, ["слово", "слова", "слов"])}
             </span>
@@ -50,7 +50,15 @@ function DictionaryPage() {
         <h4 className="dictionary__subheading mb-4">Коллекция слов</h4>
         <div className="d-flex justify-content-center">
           <div className="row w-100">
-            <WordCardComponent addRepeatWord={addRepeatWord} />
+            {dictionary?.map((word) => <WordCardComponent 
+            key={word.id} 
+            id={word.id} 
+            value={word.value} 
+            translate={word.translate} 
+            addRepeatWord={addRepeatWord} 
+            articleId={word.article_id} 
+            img={word.image}
+          />)}
           </div>
         </div>
       </div>
