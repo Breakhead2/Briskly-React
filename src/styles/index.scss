@@ -486,6 +486,11 @@ ol {
   padding: 32px;
   border-radius: 8px;
 }
+.dictionary__toolbar_buttons {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
 .words {
   padding: 4px 8px;
   border-radius: 16px;

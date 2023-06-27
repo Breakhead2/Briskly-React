@@ -54,7 +54,10 @@ function DictionaryPage() {
             </span>
           </p>
         </div>
-        <button className="btn btn-primary px-4">Тренировать слова</button>
+        <div className="dictionary__toolbar_buttons">
+          <button className="btn btn-primary px-4">Тренировать слова</button>
+          <button className="btn btn-primary px-4">Добавить слово</button>
+        </div>
       </div>
       <div>
         <h4 className="dictionary__subheading mb-4">Коллекция слов</h4>
