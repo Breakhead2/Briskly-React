@@ -16,6 +16,7 @@ import SingleTestPage from '../pages/SingleTestPage';
 import ProfilePage from '../pages/ProfilePage';
 import AuthRequire from '../hoc/AuthRequire';
 import SingleArticlePage from '../pages/SingleArticlePage';
+import AddReviewPage from '../pages/AddReviewPage';
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
         <Route
           path="/profile"
           element={<AuthRequire children={<ProfilePage />} />}
+        />
+        <Route
+          path="/review"
+          element={<AuthRequire children={<AddReviewPage />} />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
