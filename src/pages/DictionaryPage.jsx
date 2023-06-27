@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDictinary } from "../store/slices/dictionarySlice";
+import {
+  fetchDictinary,
+  fetchRemoveWord,
+} from "../store/slices/dictionarySlice";
 import declension from "../services/declension";
 import WordCardComponent from "../components/WordCardComponent";
 
@@ -10,21 +13,28 @@ function DictionaryPage() {
   const [repeatWordsId, setRepeatWordsId] = useState([]);
 
   useEffect(() => {
-    if (!dictionary.length) dispatch(fetchDictinary());
+    if (!dictionary.length) {
+      dispatch(fetchDictinary());
+    }
   }, [dictionary, dispatch]);
 
   const addRepeatWord = (target) => {
-    const wordId = target.closest("div[data-word]").getAttribute('data-word');
+    const wordId = target.closest("div[data-word]").getAttribute("data-word");
     if (repeatWordsId.includes(wordId)) {
-      let index = repeatWordsId.indexOf(wordId);
+      const index = repeatWordsId.indexOf(wordId);
       repeatWordsId.splice(index, 1);
       setRepeatWordsId([...repeatWordsId]);
     } else {
       setRepeatWordsId([...repeatWordsId, wordId]);
     }
   };
-  const removeWordFromDictionary = () => {};
-  const editCardWord = () => {};
+  const removeWordFromDictionary = (target) => {
+    const wordCard = target.closest("div[data-word]");
+    wordCard.remove();
+    const wordId = wordCard.getAttribute("data-word");
+    dispatch(fetchRemoveWord(wordId));
+  };
+  // const editCardWord = () => {};
 
   return (
     <div className="container-fluid text-center mb-5">
@@ -50,15 +60,22 @@ function DictionaryPage() {
         <h4 className="dictionary__subheading mb-4">Коллекция слов</h4>
         <div className="d-flex justify-content-center">
           <div className="row w-100">
-            {dictionary?.map((word) => <WordCardComponent 
-            key={word.id} 
-            id={word.id} 
-            value={word.value} 
-            translate={word.translate} 
-            addRepeatWord={addRepeatWord} 
-            articleId={word.article_id} 
-            img={word.image}
-          />)}
+            {dictionary.length ? (
+              dictionary.map((word) => (
+                <WordCardComponent
+                  key={word.id}
+                  id={word.id}
+                  value={word.value}
+                  translate={word.translate}
+                  addRepeatWord={addRepeatWord}
+                  removeWordFromDictionary={removeWordFromDictionary}
+                  articleId={word.article_id}
+                  img={word.image}
+                />
+              ))
+            ) : (
+              <p style={{ margin: "0 auto" }}>Ваш словарь пуст.</p>
+            )}
           </div>
         </div>
       </div>

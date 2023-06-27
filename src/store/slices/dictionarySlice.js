@@ -6,10 +6,11 @@ export const fetchDictinary = createAsyncThunk(
   "dictionaty/fetchArticles",
   async function () {
     const response = await axios.get(
-      "http://localhost:8010/proxy/api/get/dictionary", {
+      "http://localhost:8010/proxy/api/get/dictionary",
+      {
         headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${getCookie('api')}`,
+          Accept: "application/json",
+          Authorization: `Bearer ${getCookie("api")}`,
         },
       }
     );
@@ -21,10 +22,11 @@ export const fetchRemoveWord = createAsyncThunk(
   "dictionaty/fetchRemoveWord",
   async function (wordId) {
     const response = await axios.get(
-      `http://localhost:8010/proxy/api/remove/word?id=${wordId}`, {
+      `http://localhost:8010/proxy/api/remove/word?id=${wordId}`,
+      {
         headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${getCookie('api')}`,
+          Accept: "application/json",
+          Authorization: `Bearer ${getCookie("api")}`,
         },
       }
     );
