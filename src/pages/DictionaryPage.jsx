@@ -14,9 +14,7 @@ function DictionaryPage() {
   const [myDictionary, setMyDictinary] = useState(dictionary);
 
   useEffect(() => {
-    if (!dictionary.length) {
-      dispatch(fetchDictinary());
-    }
+    dispatch(fetchDictinary());
     setMyDictinary(dictionary);
   }, [dictionary, dispatch]);
 
