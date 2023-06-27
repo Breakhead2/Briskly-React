@@ -204,12 +204,17 @@ h6,
   border-radius: 80px;
 }
 
-.testimonial-carousel .owl-dots {
+.testimonial-carousel .carousel-indicators {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: 100%;
+  bottom: -30px;
   margin-top: 25px;
   text-align: center;
 }
 
-.testimonial-carousel .owl-dot {
+.testimonial-carousel .carousel-indicators li {
   position: relative;
   display: inline-block;
   margin: 0 8px;
@@ -219,7 +224,7 @@ h6,
   background: $primary;
 }
 
-.testimonial-carousel .owl-dot::after {
+.testimonial-carousel .carousel-indicators li::after {
   position: absolute;
   content: "";
   top: -5px;
@@ -230,7 +235,7 @@ h6,
   border-radius: 20px;
 }
 
-.testimonial-carousel .owl-dot.active {
+.testimonial-carousel .carousel-indicators li.active {
   background: $dark;
 }
 
