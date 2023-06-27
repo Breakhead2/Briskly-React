@@ -3,22 +3,37 @@ import declension from "../services/declension";
 import WordCardComponent from "../components/WordCardComponent";
 
 function DictionaryPage() {
-  const [repeatWords, setRepeatWords] = useState([]);
+  const [repeatWordsId, setRepeatWordsId] = useState([]);
+  const [allWords, setAllWords] = useState([]);
+
+  const addRepeatWord = (target) => {
+    const wordId = target.closest("div[data-word]").getAttribute('data-word');
+    if (repeatWordsId.includes(wordId)) {
+      let index = repeatWordsId.indexOf(wordId);
+      repeatWordsId.splice(index, 1);
+      setRepeatWordsId([...repeatWordsId]);
+    } else {
+      setRepeatWordsId([...repeatWordsId, wordId]);
+    }
+  };
+  const removeWordFromDictionary = () => {};
+  const editCardWord = () => {};
+  
   return (
     <div className="container-fluid text-center mb-5">
       <h2 className="dictionary__heading mb-5">Мой словарь</h2>
       <div className="dictionary__toolbar">
         <div className="dictionary__toolbar_statistic">
           <p>
-            Повторить сегодня:{" "}
+            Повторить сегодня:
             <span className="words words-red" id="repeat_words">
-              {declension(repeatWords.length, ["слово", "слова", "слов"])}
+              {declension(repeatWordsId.length, ["слово", "слова", "слов"])}
             </span>
           </p>
           <p>
-            Слов в словаре:{" "}
+            Слов в словаре:
             <span className="words words-green" id="all_words">
-              20 слов
+              {declension(allWords.length, ["слово", "слова", "слов"])}
             </span>
           </p>
         </div>
@@ -28,7 +43,7 @@ function DictionaryPage() {
         <h4 className="dictionary__subheading mb-4">Коллекция слов</h4>
         <div className="d-flex justify-content-center">
           <div className="row w-100">
-            <WordCardComponent setRepeatWords={setRepeatWords} />
+            <WordCardComponent addRepeatWord={addRepeatWord} />
           </div>
         </div>
       </div>

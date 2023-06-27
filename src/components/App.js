@@ -8,12 +8,12 @@ function App() {
     <Routes>
       <Route path="/auth" element={<AuthLayout />}>
         {routes.auth.map((route) => (
-          <Route path={route.path} element={route.element} />
+          <Route key={route.name} path={route.path} element={route.element} />
         ))}
       </Route>
       <Route path="/" element={<Layout />}>
         {routes.genaral.map((route) => (
-          <Route path={route.path} element={route.element} />
+          <Route key={route.name} path={route.path} element={route.element} />
         ))}
       </Route>
     </Routes>

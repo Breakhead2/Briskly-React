@@ -1,12 +1,14 @@
 import { Card } from "react-bootstrap";
 import { BsTrash, BsFillPencilFill, BsFillStarFill } from "react-icons/bs";
 
-function WordCardComponent({ setRepeatWords }) {
-  const addRepeatWord = (e) => {
-    debugger;
-    const card = e.target.value.closest("div[data-word]");
-    console.log(card);
-  };
+function WordCardComponent({ addRepeatWord }) {
+
+  const handlerRepeatWordsId = (e) => {
+    const svg = e.target.closest('svg');
+    svg.classList.toggle('active');
+    addRepeatWord(e.target);
+  }
+
   return (
     <div className="col col-xl-4 col-md-6 col-12 p-3 w-100">
       <Card
@@ -23,7 +25,7 @@ function WordCardComponent({ setRepeatWords }) {
         <div className="word__tools">
           <BsTrash />
           <BsFillPencilFill />
-          <BsFillStarFill onClick={addRepeatWord} />
+          <BsFillStarFill onClick={handlerRepeatWordsId} />
         </div>
         <Card.Body>
           <Card.Title>Value</Card.Title>
