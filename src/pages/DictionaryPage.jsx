@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDictinary } from "../store/slices/dictionarySlice";
 import declension from "../services/declension";
 import WordCardComponent from "../components/WordCardComponent";
 
 function DictionaryPage() {
+  const dispatch = useDispatch();
+  const dictionary = useSelector((state) => state.dictionary.dictionary);
   const [repeatWordsId, setRepeatWordsId] = useState([]);
-  const [allWords, setAllWords] = useState([]);
+
+  useEffect(() => {
+    if (!dictionary.length) dispatch(fetchDictinary());
+  }, [dictionary, dispatch]);
 
   const addRepeatWord = (target) => {
     const wordId = target.closest("div[data-word]").getAttribute('data-word');
@@ -18,7 +25,7 @@ function DictionaryPage() {
   };
   const removeWordFromDictionary = () => {};
   const editCardWord = () => {};
-  
+
   return (
     <div className="container-fluid text-center mb-5">
       <h2 className="dictionary__heading mb-5">Мой словарь</h2>
@@ -33,7 +40,7 @@ function DictionaryPage() {
           <p>
             Слов в словаре:
             <span className="words words-green" id="all_words">
-              {declension(allWords.length, ["слово", "слова", "слов"])}
+              {declension(dictionary?.length, ["слово", "слова", "слов"])}
             </span>
           </p>
         </div>
