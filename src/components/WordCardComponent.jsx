@@ -2,7 +2,6 @@ import { Card } from "react-bootstrap";
 import { BsTrash, BsFillPencilFill, BsFillStarFill } from "react-icons/bs";
 
 function WordCardComponent({ addRepeatWord, value, translate, id, articleId, img }) {
-  console.log(img);
   const handlerRepeatWordsId = (e) => {
     const svg = e.target.closest('svg');
     svg.classList.toggle('active');
