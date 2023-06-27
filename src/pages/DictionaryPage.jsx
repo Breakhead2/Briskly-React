@@ -11,13 +11,13 @@ function DictionaryPage() {
   const dispatch = useDispatch();
   const dictionary = useSelector((state) => state.dictionary.dictionary);
   const [repeatWordsId, setRepeatWordsId] = useState([]);
-  const [dicLeng, setDicLeng] = useState(dictionary?.length);
+  const [myDictionary, setMyDictinary] = useState(dictionary);
 
   useEffect(() => {
     if (!dictionary.length) {
       dispatch(fetchDictinary());
     }
-    setDicLeng(dictionary.length);
+    setMyDictinary(dictionary);
   }, [dictionary, dispatch]);
 
   const addRepeatWord = (target) => {
@@ -31,10 +31,9 @@ function DictionaryPage() {
     }
   };
   const removeWordFromDictionary = (target) => {
-    const wordCard = target.closest("div[data-word]");
-    wordCard.remove();
-    setDicLeng(dicLeng - 1);
-    const wordId = wordCard.getAttribute("data-word");
+    const wordId = target.closest("div[data-word]").getAttribute("data-word");
+    const newDictionart = myDictionary.filter((item) => item.id !== +wordId);
+    setMyDictinary([...newDictionart]);
     dispatch(fetchRemoveWord(wordId));
   };
   // const editCardWord = () => {};
@@ -53,7 +52,7 @@ function DictionaryPage() {
           <p>
             В словаре:
             <span className="words words-green" id="all_words">
-              {declension(dicLeng, ["слово", "слова", "слов"])}
+              {declension(myDictionary?.length, ["слово", "слова", "слов"])}
             </span>
           </p>
         </div>
@@ -63,8 +62,8 @@ function DictionaryPage() {
         <h4 className="dictionary__subheading mb-4">Коллекция слов</h4>
         <div className="d-flex justify-content-center">
           <div className="row w-100">
-            {dicLeng ? (
-              dictionary.map((word) => (
+            {myDictionary?.length ? (
+              myDictionary.map((word) => (
                 <WordCardComponent
                   key={word.id}
                   id={word.id}
