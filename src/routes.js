@@ -17,6 +17,7 @@ import SingleArticlePage from "./pages/SingleArticlePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Homepage from "./pages/HomePage";
 import DictionaryPage from "./pages/DictionaryPage";
+import AddReviewPage from "./pages/AddReviewPage";
 
 const routes = {
   auth: [
@@ -96,6 +97,11 @@ const routes = {
       name: "dictionary",
       path: "/dictionary",
       element: <AuthRequire children={<DictionaryPage />} />,
+    },
+    {
+      name: "review",
+      path: "/review",
+      element: <AuthRequire children={<AddReviewPage />} />,
     },
   ],
 };
