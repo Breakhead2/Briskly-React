@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearMessage, sendNotification } from '../store/slices/notificationSlice';
+import {
+  clearMessage,
+  sendNotification,
+} from '../store/slices/notificationSlice';
 import Modal from './Modal';
 import Loader from './Loader';
 import { showModal } from '../store/slices/modalSlice';
@@ -33,11 +36,15 @@ function Footer() {
         <div className="col-lg-7 col-md-12">
           <div className="row">
             <div className="col-md-6 mb-5">
-              <h5 className="text-primary text-uppercase mb-4" style={{ letterSpacing: '5px' }}>
+              <h5
+                className="text-primary text-uppercase mb-4"
+                style={{ letterSpacing: '5px' }}
+              >
                 Связаться с нами
               </h5>
               <p>
-                <i className="fa fa-map-marker-alt mr-2"></i>Ул.Неизвестно, 12, Город, Страна
+                <i className="fa fa-map-marker-alt mr-2"></i>Ул.Неизвестно, 12,
+                Город, Страна
               </p>
               <p>
                 <i className="fa fa-phone-alt mr-2"></i>+012 345 6789
@@ -65,10 +72,16 @@ function Footer() {
           </div>
         </div>
         <div className="col-lg-5 col-md-12 mb-5">
-          <h5 className="text-primary text-uppercase mb-4" style={{ letterSpacing: '5px' }}>
+          <h5
+            className="text-primary text-uppercase mb-4"
+            style={{ letterSpacing: '5px' }}
+          >
             Хотите получать новости?
           </h5>
-          <p>Подпишитесь на уведомления, чтобы быть в курсе всех свежих новостей и акций</p>
+          <p>
+            Подпишитесь на уведомления, чтобы быть в курсе всех свежих новостей
+            и акций
+          </p>
           <div className="w-100">
             <div className="input-group">
               <input
@@ -97,12 +110,12 @@ function Footer() {
         </div>
       </div>
       <div className="row justify-content-center bg-dark text-white border-top py-4 px-sm-3 px-md-5">
-        <div className="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+        <div className="col-lg-6 text-center text-lg-left mb-3 mb-lg-0">
           <p className="m-0 text-white">
             &copy; <a href="/">Domain Name.</a> All rights reserved.
           </p>
         </div>
-        <div className="col-lg-6 text-center text-md-right">
+        <div className="col-lg-6 mt-3 mt-lg-0 text-center text-lg-right">
           <ul className="nav d-inline-flex">
             <li className="nav-item nav-link text-white py-0">Политика</li>
             <li className="nav-item nav-link text-white py-0">Условия</li>
