@@ -16,7 +16,7 @@ function DictionaryPage() {
     if (!dictionary.length) {
       dispatch(fetchDictinary());
     }
-  }, [dictionary, dispatch]);
+  }, []);
 
   const addRepeatWord = (target) => {
     const wordId = target.closest("div[data-word]").getAttribute("data-word");
