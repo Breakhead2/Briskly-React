@@ -5,6 +5,7 @@ import CustomCheckbox from "../CustomChechbox/CustomCheckbox";
 import style from "./WordsComponent.module.css";
 import getCookie from "../../services/getCookie";
 import { showModal } from "../../store/slices/modalSlice";
+import { fetchDictinary } from "../../store/slices/dictionarySlice";
 
 function WordsComponent({ words }) {
   const [learnWordsId, setLearnWordsId] = useState([]);
@@ -25,20 +26,23 @@ function WordsComponent({ words }) {
         const body = {
           words: learnWordsId,
         };
-        axios.post("http://localhost:8010/proxy/api/send/words", body, {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${getCookie("api")}`,
-          },
-        }).then((response) => {
-          if (response.data.success) {
-            dispatch(
-              showModal({
-                message: response.data.message,
-              })
-            );
-          }
-        });
+        axios
+          .post("http://localhost:8010/proxy/api/send/words", body, {
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${getCookie("api")}`,
+            },
+          })
+          .then((response) => {
+            if (response.data.success) {
+              dispatch(
+                showModal({
+                  message: response.data.message,
+                })
+              );
+              dispatch(fetchDictinary());
+            }
+          });
       }
     }
   };

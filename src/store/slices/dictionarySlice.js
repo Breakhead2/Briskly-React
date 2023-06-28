@@ -3,7 +3,7 @@ import getCookie from "../../services/getCookie";
 import axios from "axios";
 
 export const fetchDictinary = createAsyncThunk(
-  "dictionaty/fetchArticles",
+  "dictionary/fetchDictinary",
   async function () {
     const response = await axios.get(
       "http://localhost:8010/proxy/api/get/dictionary",
@@ -19,7 +19,7 @@ export const fetchDictinary = createAsyncThunk(
 );
 
 export const fetchRemoveWord = createAsyncThunk(
-  "dictionaty/fetchRemoveWord",
+  "dictionary/fetchRemoveWord",
   async function (wordId) {
     const response = await axios.get(
       `http://localhost:8010/proxy/api/remove/word?id=${wordId}`,
@@ -50,6 +50,16 @@ const dictionarySlice = createSlice({
       state.loading = false;
     },
     [fetchDictinary.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
+    [fetchRemoveWord.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchRemoveWord.fulfilled]: (state, action) => {
+      state.dictionary = action.payload.words;
+      state.loading = false;
+    },
+    [fetchRemoveWord.rejected]: (state, action) => {
       state.error = action.payload;
     },
   },
