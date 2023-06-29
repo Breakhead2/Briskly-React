@@ -17,7 +17,7 @@ function Homepage() {
           др.;
         </p>
       </div>
-      <Courses count={1} />
+      <Courses count={3} />
       <CarouselReviews />
     </>
   );

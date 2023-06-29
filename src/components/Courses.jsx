@@ -1,6 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchCourses } from '../store/slices/coursesSlice';
+import { useSelector } from 'react-redux';
 import CardComponent from './CardComponent';
 import Sceleton from './Sceleton';
 
@@ -8,13 +6,6 @@ function CourseComponent({ count }) {
   const loading = useSelector((state) => state.courses.loading);
   const courses = useSelector((state) => state.courses.courses);
   const profile = useSelector((state) => state.profile.profile);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!courses.length) {
-      dispatch(fetchCourses());
-    }
-  });
 
   return (
     <div className="container-fluid text-center">
