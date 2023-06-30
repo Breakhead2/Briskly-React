@@ -18,6 +18,7 @@ function CardComponent({
       showModal({
         reason: 'authRequire',
         message: 'Действие доступно только для авторизованных пользователей',
+        path: linkPath,
       })
     );
   };

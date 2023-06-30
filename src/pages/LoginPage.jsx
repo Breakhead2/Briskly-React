@@ -21,7 +21,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const fromPage = location.state?.from.pathname || '/';
+  const fromPage = location.state.from || '/';
 
   useEffect(() => {
     if (profile) {

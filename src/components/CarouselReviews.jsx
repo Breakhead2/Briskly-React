@@ -12,12 +12,14 @@ function CarouselReviews() {
   const navigate = useNavigate();
 
   const linkHandle = () => {
-    if (profile) navigate('/review');
+    const path = '/review';
+    if (profile) navigate(path);
     else {
       dispatch(
         showModal({
           reason: 'authRequire',
           message: 'Оставлять отзывы могут только авторизованные пользователи',
+          path,
         })
       );
     }
