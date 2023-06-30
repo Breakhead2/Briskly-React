@@ -1,18 +1,17 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { LINK_APP } from "../../config";
 
 export const sendNotification = createAsyncThunk(
-  'notification/subscribe',
+  "notification/subscribe",
   async function (email) {
-    const response = await fetch(
-      `http://localhost:8010/proxy/api/send/mail?email=${email}`
-    );
+    const response = await fetch(`${LINK_APP}api/send/mail?email=${email}`);
     const data = await response.json();
     return data;
   }
 );
 
 const notificationSlice = createSlice({
-  name: 'notification',
+  name: "notification",
   initialState: {
     loading: false,
     message: null,

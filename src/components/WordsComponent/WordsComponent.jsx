@@ -6,6 +6,7 @@ import style from "./WordsComponent.module.css";
 import getCookie from "../../services/getCookie";
 import { showModal } from "../../store/slices/modalSlice";
 import { fetchDictinary } from "../../store/slices/dictionarySlice";
+import { LINK_APP } from "../../config";
 
 function WordsComponent({ words }) {
   const [learnWordsId, setLearnWordsId] = useState([]);
@@ -27,7 +28,7 @@ function WordsComponent({ words }) {
           words: learnWordsId,
         };
         axios
-          .post("http://localhost:8010/proxy/api/send/words", body, {
+          .post(LINK_APP + "api/send/words", body, {
             headers: {
               Accept: "application/json",
               Authorization: `Bearer ${getCookie("api")}`,

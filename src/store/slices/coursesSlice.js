@@ -1,9 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { LINK_APP } from "../../config";
 
 export const fetchCourses = createAsyncThunk(
-  'courses/fetchCourses',
+  "courses/fetchCourses",
   async function () {
-    const response = await fetch('http://localhost:8010/proxy/api/get/courses');
+    const response = await fetch(LINK_APP + "api/get/courses");
     const data = await response.json();
 
     return data.courses;
@@ -11,7 +12,7 @@ export const fetchCourses = createAsyncThunk(
 );
 
 const coursesSlice = createSlice({
-  name: 'courses',
+  name: "courses",
   initialState: {
     courses: [],
     loading: false,

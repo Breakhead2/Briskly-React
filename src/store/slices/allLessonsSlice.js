@@ -1,18 +1,16 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import getCookie from '../../services/getCookie';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import getCookie from "../../services/getCookie";
+import { LINK_APP } from "../../config";
 
 export const fetchallLessons = createAsyncThunk(
-  'lesson/fetchLessonsByCourseId',
+  "lesson/fetchLessonsByCourseId",
   async function (courseId) {
-    const response = await fetch(
-      `http://localhost:8010/proxy/api/get/lessons?id=${courseId}`,
-      {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${getCookie('api')}`,
-        },
-      }
-    );
+    const response = await fetch(`${LINK_APP}api/get/lessons?id=${courseId}`, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${getCookie("api")}`,
+      },
+    });
     const data = await response.json();
 
     return data;
@@ -20,7 +18,7 @@ export const fetchallLessons = createAsyncThunk(
 );
 
 const allLessonsSlice = createSlice({
-  name: 'allLessons',
+  name: "allLessons",
   initialState: {
     lessons: [],
     passLessons: [],

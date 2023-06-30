@@ -7,6 +7,7 @@ import { confirmLogin } from "../store/slices/profileSlice";
 import Loader from "./Loader";
 import getCookie from "../services/getCookie";
 import removeCookie from "../services/removeCookie";
+import { LINK_APP } from "../config";
 
 function UserInfo() {
   const profile = useSelector((state) => state.profile.profile);
@@ -21,7 +22,7 @@ function UserInfo() {
 
   const logout = () => {
     navigate("/");
-    fetch("http://localhost:8010/proxy/api/auth/logout", {
+    fetch(LINK_APP + "api/auth/logout", {
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${getCookie("api")}`,

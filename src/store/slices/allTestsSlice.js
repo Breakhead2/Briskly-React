@@ -1,18 +1,17 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { LINK_APP } from "../../config";
 
 export const fetchTests = createAsyncThunk(
-  'tests/fetchTests',
+  "tests/fetchTests",
   async function () {
-    const response = await axios.get(
-      'http://localhost:8010/proxy/api/get/tests'
-    );
+    const response = await axios.get(LINK_APP + "api/get/tests");
     if (response.data.success) return response.data.tests;
   }
 );
 
 const testsSlice = createSlice({
-  name: 'tests',
+  name: "tests",
   initialState: {
     loading: false,
     tests: [],
