@@ -26,12 +26,9 @@ function CarouselReviews() {
   };
 
   return (
-    <>
-      <div className="container text-center mb-5">
-        <h5 className="text-primary text-uppercase mb-3">Отзывы</h5>
-        <h1>Что говорят наши студенты?</h1>
-      </div>
-
+    <div className="container-fluid text-center mb-5">
+      <h5 className="text-primary text-uppercase mb-3">Отзывы</h5>
+      <h1>Что говорят наши студенты?</h1>
       <div className="row justify-content-center">
         <div className="col-lg-8">
           <Carousel className="owl-carousel testimonial-carousel">
@@ -56,7 +53,7 @@ function CarouselReviews() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
