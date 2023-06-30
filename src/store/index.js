@@ -10,6 +10,7 @@ import notification from "./slices/notificationSlice";
 import articles from "./slices/allArticlesSlice";
 import article from "./slices/articleSlice";
 import dictionary from "./slices/dictionarySlice";
+import word from "./slices/wordSlice";
 
 export const store = configureStore({
   reducer: {
@@ -24,5 +25,6 @@ export const store = configureStore({
     articles,
     article,
     dictionary,
+    word,
   },
 });

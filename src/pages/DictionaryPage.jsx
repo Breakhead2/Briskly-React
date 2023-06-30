@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import {
   fetchDictinary,
   fetchRemoveWord,
 } from "../store/slices/dictionarySlice";
 import declension from "../services/declension";
 import WordCardComponent from "../components/WordCardComponent";
+import WordCardFormComponent from "../components/WordCardFormComponent";
 
 function DictionaryPage() {
   const dispatch = useDispatch();
   const dictionary = useSelector((state) => state.dictionary.dictionary);
   const [repeatWordsId, setRepeatWordsId] = useState([]);
-
+  const [show, setShow] = useState(false);
+  let location = useLocation();
   useEffect(() => {
     if (!dictionary.length) {
       dispatch(fetchDictinary());
@@ -33,7 +36,12 @@ function DictionaryPage() {
     //!TODO написать хук для отложенной отправки массива слов
     dispatch(fetchRemoveWord(wordId));
   };
-  // const editCardWord = () => {};
+
+  const editWord = (target) => {
+    const wordId = target.closest("div[data-word]").getAttribute("data-word");
+    location.search = `wordId=${wordId}`;
+    setShow(!show);
+  };
 
   return (
     <div className="container-fluid text-center mb-5">
@@ -55,7 +63,12 @@ function DictionaryPage() {
         </div>
         <div className="dictionary__toolbar_buttons">
           <button className="btn btn-primary px-4">Тренировать слова</button>
-          <button className="btn btn-primary px-4">Добавить слово</button>
+          <button
+            className="btn btn-primary px-4"
+            onClick={() => setShow(!show)}
+          >
+            Добавить слово
+          </button>
         </div>
       </div>
       <div>
@@ -72,6 +85,7 @@ function DictionaryPage() {
                   addRepeatWord={addRepeatWord}
                   removeWordFromDictionary={removeWordFromDictionary}
                   articleId={word.article_id}
+                  editWord={editWord}
                   img={word.image}
                 />
               ))
@@ -81,6 +95,7 @@ function DictionaryPage() {
           </div>
         </div>
       </div>
+      {show && <WordCardFormComponent setShow={setShow} show={setShow} />}
     </div>
   );
 }

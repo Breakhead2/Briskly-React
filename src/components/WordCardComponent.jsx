@@ -9,6 +9,7 @@ function WordCardComponent({
   articleId,
   img,
   removeWordFromDictionary,
+  editWord,
 }) {
   const handlerRepeatWordsId = (e) => {
     const svg = e.target.closest("svg");
@@ -17,6 +18,10 @@ function WordCardComponent({
   };
   const handlerRemoveWord = (e) => {
     removeWordFromDictionary(e.target);
+  };
+
+  const hadlerEditWord = (e) => {
+    editWord(e.target);
   };
 
   return (
@@ -31,7 +36,7 @@ function WordCardComponent({
         </div>
         <div className="word__tools">
           <BsTrash onClick={handlerRemoveWord} />
-          {!articleId && <BsFillPencilFill />}
+          {!articleId && <BsFillPencilFill onClick={hadlerEditWord} />}
           <BsFillStarFill onClick={handlerRepeatWordsId} />
         </div>
         <Card.Body>

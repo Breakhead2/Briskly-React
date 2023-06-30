@@ -34,6 +34,23 @@ export const fetchRemoveWord = createAsyncThunk(
   }
 );
 
+export const fetchAddNewWord = createAsyncThunk(
+  "dictionary/fetchAddNewWord",
+  async function (data) {
+    const response = await axios.post(
+      "http://localhost:8010/proxy/api/add/word",
+      data,
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${getCookie("api")}`,
+        },
+      }
+    );
+    if (response.data) return response.data;
+  }
+);
+
 const dictionarySlice = createSlice({
   name: "dictionary",
   initialState: {
@@ -60,6 +77,22 @@ const dictionarySlice = createSlice({
       state.loading = false;
     },
     [fetchRemoveWord.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
+    [fetchAddNewWord.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchAddNewWord.fulfilled]: (state, action) => {
+      console.log(action);
+      if (!action.payload.success) {
+        state.error = action.payload.errors;
+        state.loading = false;
+        return;
+      }
+      state.dictionary = action.payload.words;
+      state.loading = false;
+    },
+    [fetchAddNewWord.rejected]: (state, action) => {
       state.error = action.payload;
     },
   },
