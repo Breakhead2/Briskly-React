@@ -9,6 +9,7 @@ function ErrorModal() {
   const message = useSelector((state) => state.modal.message);
   const reason = useSelector((state) => state.modal.reason);
   const path = useSelector((state) => state.modal.path);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

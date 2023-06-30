@@ -1,6 +1,5 @@
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-// import axios from 'axios';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
@@ -11,9 +10,7 @@ function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  // const [loading, setLoading] = useState(false);
-  // const [profile, setProfile] = useState(null);
-  // const [error, setError] = useState(null);
+
   const profile = useSelector((state) => state.profile.profile);
   const loading = useSelector((state) => state.profile.loading);
   const error = useSelector((state) => state.profile.error);
@@ -53,28 +50,6 @@ function RegisterPage() {
         repeat_pass: confirmPassword,
       })
     );
-    // setLoading(true);
-    // axios
-    //   .get('https://breakhd2.store/sanctum/csrf-cookie')
-    //   .then((csrfResponse) => {
-    //     const authData = {
-    //       name,
-    //       email,
-    //       password,
-    //       repeat_pass: confirmPassword,
-    //     };
-    //     axios
-    //       .post('http://localhost:8010/proxy/api/auth/register', authData)
-    //       .then((response) => {
-    //         if (response.data.success) {
-    //           setProfile(response.data.data.profile);
-    //           document.cookie = `api=${response.data.data.token}; path=/`;
-    //         } else {
-    //           setError(response.data.errors);
-    //         }
-    //         setLoading(false);
-    //       });
-    //   });
   };
 
   return (

@@ -1,6 +1,6 @@
-import { Card } from 'react-bootstrap';
+import { Card, NavLink } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { showModal } from '../store/slices/modalSlice';
 
 function CardComponent({
@@ -12,15 +12,20 @@ function CardComponent({
   userRequire,
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const linkHandle = () => {
-    dispatch(
-      showModal({
-        reason: 'authRequire',
-        message: 'Действие доступно только для авторизованных пользователей',
-        path: linkPath,
-      })
-    );
+    if (userRequire) {
+      dispatch(
+        showModal({
+          reason: 'authRequire',
+          message: 'Действие доступно только для авторизованных пользователей',
+          path: linkPath,
+        })
+      );
+    } else {
+      navigate(linkPath);
+    }
   };
 
   return (
@@ -55,19 +60,7 @@ function CardComponent({
           {description && <Card.Text>{description}</Card.Text>}
         </Card.Body>
         <Card.Footer className="bg-light">
-          {linkPath ? (
-            <>
-              {userRequire ? (
-                <Link onClick={linkHandle}>Перейти</Link>
-              ) : (
-                <Link to={linkPath}>Перейти</Link>
-              )}
-            </>
-          ) : (
-            <></>
-          )}
-          {/* {userRequire && <Link>Перейти</Link>}
-          {linkPath && <Link to={linkPath}>Перейти</Link>} */}
+          {linkPath && <NavLink onClick={linkHandle}>Перейти</NavLink>}
         </Card.Footer>
       </Card>
     </div>
