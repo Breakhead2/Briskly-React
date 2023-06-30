@@ -2,19 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import { closeModal } from "../store/slices/modalSlice";
 import { Button } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ErrorModal() {
   const show = useSelector((state) => state.modal.show);
   const message = useSelector((state) => state.modal.message);
   const reason = useSelector((state) => state.modal.reason);
+  const path = useSelector((state) => state.modal.path);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleClose = () => dispatch(closeModal());
   const authRequireHandle = () => {
-    navigate("auth/login", { state: { from: location } });
+    navigate("auth/login", { state: { from: path } });
     dispatch(closeModal());
   };
 

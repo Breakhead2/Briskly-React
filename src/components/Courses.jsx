@@ -7,6 +7,8 @@ function CourseComponent({ count }) {
   const courses = useSelector((state) => state.courses.courses);
   const profile = useSelector((state) => state.profile.profile);
 
+  const renderCourses = count ? courses.slice(0, count) : courses;
+
   return (
     <div className="container-fluid text-center">
       <h2 className="mb-5">Курсы</h2>
@@ -16,33 +18,16 @@ function CourseComponent({ count }) {
         <>
           <div className="d-flex justify-content-center">
             <div className="row w-100">
-              {count ? (
-                courses
-                  .slice(0, count)
-                  .map(({ id, image_url, name, description }) => (
-                    <CardComponent
-                      key={id}
-                      img={image_url}
-                      title={name}
-                      description={description}
-                      linkPath={`/courses/${id}`}
-                      userRequire={profile ? false : true}
-                    />
-                  ))
-              ) : (
-                <>
-                  {courses.map(({ id, image_url, name, description }) => (
-                    <CardComponent
-                      key={id}
-                      img={image_url}
-                      title={name}
-                      description={description}
-                      linkPath={`/courses/${id}`}
-                      userRequire={profile ? false : true}
-                    />
-                  ))}
-                </>
-              )}
+              {renderCourses.map(({ id, image_url, name, description }) => (
+                <CardComponent
+                  key={id}
+                  img={image_url}
+                  title={name}
+                  description={description}
+                  linkPath={`/courses/${id}`}
+                  userRequire={profile ? false : true}
+                />
+              ))}
             </div>
           </div>
         </>
