@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import {
   fetchDictinary,
   fetchRemoveWord,
@@ -13,7 +14,7 @@ function DictionaryPage() {
   const dictionary = useSelector((state) => state.dictionary.dictionary);
   const [repeatWordsId, setRepeatWordsId] = useState([]);
   const [show, setShow] = useState(false);
-
+  let location = useLocation();
   useEffect(() => {
     if (!dictionary.length) {
       dispatch(fetchDictinary());
@@ -34,6 +35,12 @@ function DictionaryPage() {
     const wordId = target.closest("div[data-word]").getAttribute("data-word");
     //!TODO написать хук для отложенной отправки массива слов
     dispatch(fetchRemoveWord(wordId));
+  };
+
+  const editWord = (target) => {
+    const wordId = target.closest("div[data-word]").getAttribute("data-word");
+    location.search = `wordId=${wordId}`;
+    setShow(!show);
   };
 
   return (
@@ -78,6 +85,7 @@ function DictionaryPage() {
                   addRepeatWord={addRepeatWord}
                   removeWordFromDictionary={removeWordFromDictionary}
                   articleId={word.article_id}
+                  editWord={editWord}
                   img={word.image}
                 />
               ))

@@ -14,7 +14,6 @@ function ErrorModal() {
 
   const handleClose = () => dispatch(closeModal());
   const authRequireHandle = () => {
-    console.log(location);
     navigate("auth/login", { state: { from: location } });
     dispatch(closeModal());
   };

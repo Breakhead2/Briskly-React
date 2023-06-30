@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { showModal } from "./modalSlice";
-import { useDispatch } from "react-redux";
 import getCookie from "../../services/getCookie";
 import axios from "axios";
 

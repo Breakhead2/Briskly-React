@@ -1,16 +1,16 @@
-import { Form, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { Form, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 // import axios from 'axios';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import Loader from '../components/Loader';
-import { useEffect, useState } from 'react';
-import { register } from '../store/slices/profileSlice';
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import Loader from "../components/Loader";
+import { useEffect, useState } from "react";
+import { register } from "../store/slices/profileSlice";
 
 function RegisterPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   // const [loading, setLoading] = useState(false);
   // const [profile, setProfile] = useState(null);
   // const [error, setError] = useState(null);
@@ -22,10 +22,9 @@ function RegisterPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const fromPage = location.state?.from || '/';
+  const fromPage = location.state?.from || "/";
 
   useEffect(() => {
-    console.log(fromPage);
     if (profile) {
       navigate(fromPage);
     }
@@ -125,7 +124,7 @@ function RegisterPage() {
               {error && (
                 <span
                   className="mt-2"
-                  style={{ display: 'block', color: 'red' }}
+                  style={{ display: "block", color: "red" }}
                 >
                   {error[0]}
                 </span>
