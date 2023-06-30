@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { showModal } from "./modalSlice";
+import { useDispatch } from "react-redux";
 import getCookie from "../../services/getCookie";
 import axios from "axios";
 
@@ -23,6 +25,23 @@ export const fetchRemoveWord = createAsyncThunk(
   async function (wordId) {
     const response = await axios.get(
       `http://localhost:8010/proxy/api/remove/word?id=${wordId}`,
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${getCookie("api")}`,
+        },
+      }
+    );
+    if (response.data.success) return response.data;
+  }
+);
+
+export const fetchAddNewWord = createAsyncThunk(
+  "dictionary/fetchAddNewWord",
+  async function (data) {
+    const response = await axios.post(
+      "http://localhost:8010/proxy/api/add/word",
+      data,
       {
         headers: {
           Accept: "application/json",
@@ -60,6 +79,16 @@ const dictionarySlice = createSlice({
       state.loading = false;
     },
     [fetchRemoveWord.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
+    [fetchAddNewWord.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchAddNewWord.fulfilled]: (state, action) => {
+      state.dictionary = action.payload.words;
+      state.loading = false;
+    },
+    [fetchAddNewWord.rejected]: (state, action) => {
       state.error = action.payload;
     },
   },

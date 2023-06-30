@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
-import Modal from 'react-bootstrap/Modal';
-import { closeModal } from '../store/slices/modalSlice';
-import { Button } from 'react-bootstrap';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import Modal from "react-bootstrap/Modal";
+import { closeModal } from "../store/slices/modalSlice";
+import { Button } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ErrorModal() {
   const show = useSelector((state) => state.modal.show);
@@ -15,18 +15,18 @@ function ErrorModal() {
   const handleClose = () => dispatch(closeModal());
   const authRequireHandle = () => {
     console.log(location);
-    navigate('auth/login', { state: { from: location } });
+    navigate("auth/login", { state: { from: location } });
     dispatch(closeModal());
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} style={{ zIndex: "99999" }}>
       <Modal.Header closeButton>
         <Modal.Title>Уведомление</Modal.Title>
       </Modal.Header>
       <Modal.Body>{message}</Modal.Body>
       <Modal.Footer>
-        {reason === 'authRequire' && (
+        {reason === "authRequire" && (
           <Button variant="success" onClick={authRequireHandle}>
             Войти
           </Button>

@@ -6,11 +6,13 @@ import {
 } from "../store/slices/dictionarySlice";
 import declension from "../services/declension";
 import WordCardComponent from "../components/WordCardComponent";
+import WordCardFormComponent from "../components/WordCardFormComponent";
 
 function DictionaryPage() {
   const dispatch = useDispatch();
   const dictionary = useSelector((state) => state.dictionary.dictionary);
   const [repeatWordsId, setRepeatWordsId] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (!dictionary.length) {
@@ -33,7 +35,6 @@ function DictionaryPage() {
     //!TODO написать хук для отложенной отправки массива слов
     dispatch(fetchRemoveWord(wordId));
   };
-  // const editCardWord = () => {};
 
   return (
     <div className="container-fluid text-center mb-5">
@@ -55,7 +56,12 @@ function DictionaryPage() {
         </div>
         <div className="dictionary__toolbar_buttons">
           <button className="btn btn-primary px-4">Тренировать слова</button>
-          <button className="btn btn-primary px-4">Добавить слово</button>
+          <button
+            className="btn btn-primary px-4"
+            onClick={() => setShow(!show)}
+          >
+            Добавить слово
+          </button>
         </div>
       </div>
       <div>
@@ -81,6 +87,7 @@ function DictionaryPage() {
           </div>
         </div>
       </div>
+      {show && <WordCardFormComponent setShow={setShow} show={setShow} />}
     </div>
   );
 }
