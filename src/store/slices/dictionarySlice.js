@@ -47,7 +47,7 @@ export const fetchAddNewWord = createAsyncThunk(
         },
       }
     );
-    if (response.data.success) return response.data;
+    if (response.data) return response.data;
   }
 );
 
@@ -83,6 +83,12 @@ const dictionarySlice = createSlice({
       state.loading = true;
     },
     [fetchAddNewWord.fulfilled]: (state, action) => {
+      console.log(action);
+      if (!action.payload.success) {
+        state.error = action.payload.errors;
+        state.loading = false;
+        return;
+      }
       state.dictionary = action.payload.words;
       state.loading = false;
     },

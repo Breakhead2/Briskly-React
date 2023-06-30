@@ -1,12 +1,5 @@
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-// import axios from 'axios';
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import Loader from "../components/Loader";
-import { useEffect, useState } from "react";
-import { register } from "../store/slices/profileSlice";
-import { Form, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
 import { useEffect, useState } from "react";

@@ -6,6 +6,7 @@ import ImageUploader from "./ImageUploader";
 import { Card } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { fetchClearForm } from "../store/slices/wordSlice";
+import { showModal } from "../store/slices/modalSlice";
 
 function WordCardFormComponent({ setShow, show }) {
   let word = useSelector((state) => state.word.word);
@@ -18,16 +19,34 @@ function WordCardFormComponent({ setShow, show }) {
   const dispatch = useDispatch();
   const handlerSendForm = (e) => {
     e.preventDefault();
-    location.search = "";
-    const data = {
-      image: base64,
-      word: value,
-      translate,
-      wordId,
-    };
-    dispatch(fetchAddNewWord(data));
-    dispatch(fetchClearForm());
-    setShow(!show);
+    if (validation()) {
+      location.search = "";
+      const data = {
+        image: base64,
+        word: value,
+        translate,
+        wordId,
+      };
+      dispatch(fetchAddNewWord(data));
+      dispatch(fetchClearForm());
+      setShow(!show);
+    }
+  };
+
+  const validation = () => {
+    if (base64 === "" || value === "" || translate === "") {
+      dispatch(showModal({ message: "Заполнены не все поля" }));
+      return false;
+    } else if (!/^[a-zA-Z]+$/.test(value)) {
+      dispatch(
+        showModal({ message: "Только английские буквы для поля Слово" })
+      );
+      return false;
+    } else if (!/[\wа-я]+/gi.test(translate)) {
+      dispatch(showModal({ message: "Только русские буквы для поля Перевод" }));
+      return false;
+    }
+    return true;
   };
 
   const closeForm = () => {
