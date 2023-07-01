@@ -46,9 +46,9 @@ function AddReviewPage() {
     }
   };
   return (
-    <div className="container-fluid py-5">
-      <h2 className="text-center">Оставить отзыв</h2>
-      <Form style={{ width: 500 }}>
+    <div className="container-fluid py-5 d-flex flex-column align-items-center">
+      <h2 className="text-center mb-4">Оставить отзыв</h2>
+      <Form className="review-form">
         <Form.Group>
           <Form.Label>
             Поделитесь вашим мнение о нас. Нам очень важна обратная связь, чтобы
@@ -62,7 +62,11 @@ function AddReviewPage() {
             onChange={(e) => setReview(e.target.value)}
           />
         </Form.Group>
-        <Button type="submit" onClick={handlerSendReview}>
+        <Button
+          type="submit"
+          onClick={handlerSendReview}
+          className="form-review-btn"
+        >
           Отправить
         </Button>
       </Form>

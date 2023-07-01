@@ -645,3 +645,23 @@ ol {
 .input-form:focus {
   outline: none;
 }
+
+// review block
+.review-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+.form-review-btn {
+  align-self: end;
+}
+
+@media (max-width: 426px) {
+  .form-review-btn {
+    align-self: center;
+    width: 100%;
+  }
+  .review-form {
+    width: 100%;
+  }
+}
