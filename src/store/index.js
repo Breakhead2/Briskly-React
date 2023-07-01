@@ -11,6 +11,7 @@ import articles from "./slices/allArticlesSlice";
 import article from "./slices/articleSlice";
 import dictionary from "./slices/dictionarySlice";
 import word from "./slices/wordSlice";
+import reviews from "./slices/reviewSlice";
 
 export const store = configureStore({
   reducer: {
@@ -26,5 +27,6 @@ export const store = configureStore({
     article,
     dictionary,
     word,
+    reviews,
   },
 });

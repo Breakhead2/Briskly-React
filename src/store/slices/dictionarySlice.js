@@ -77,7 +77,6 @@ const dictionarySlice = createSlice({
       state.loading = true;
     },
     [fetchAddNewWord.fulfilled]: (state, action) => {
-      console.log(action);
       if (!action.payload.success) {
         state.error = action.payload.errors;
         state.loading = false;
