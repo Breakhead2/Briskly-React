@@ -1,16 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../components/Loader';
-import { Form, Button } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
-import { getProfile } from '../store/slices/profileSlice';
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../components/Loader";
+import { Form, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { getProfile } from "../store/slices/profileSlice";
 
 function ProfilePage() {
   const loading = useSelector((state) => state.profile.loading);
   const profilePageData = useSelector((state) => state.profile.profilePageData);
+  const error = useSelector((state) => state.profile.error);
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
     if (!profilePageData) {
@@ -45,9 +46,9 @@ function ProfilePage() {
             <img
               src={profilePageData?.image_url}
               alt="..."
-              style={{ width: '400px', height: '100%', display: 'block' }}
+              style={{ width: "400px", height: "100%", display: "block" }}
             />
-            <div style={{ width: '400px', marginLeft: '200px' }}>
+            <div style={{ width: "400px", marginLeft: "200px" }}>
               <h3 className="mb-3">
                 Ваш баланс: {profilePageData?.points} балла
                 <i className="fa fa-bolt text-primary ml-1"></i>
@@ -81,14 +82,14 @@ function ProfilePage() {
                     type="password"
                     placeholder="Введите пароль"
                   />
-                  {/* {error && (
-                <span
-                  className="mt-2"
-                  style={{ display: 'block', color: 'red' }}
-                >
-                  {error[0]}
-                </span>
-              )} */}
+                  {error && (
+                    <span
+                      className="mt-2"
+                      style={{ display: "block", color: "red" }}
+                    >
+                      {error[0]}
+                    </span>
+                  )}
                 </Form.Group>
                 <Form.Group controlId="password">
                   <Form.Label>Повторите пароль</Form.Label>
@@ -97,7 +98,7 @@ function ProfilePage() {
                     value={confirmPassword}
                     type="password"
                     placeholder="Повторите пароль"
-                  />{' '}
+                  />{" "}
                 </Form.Group>
                 <Button
                   disabled

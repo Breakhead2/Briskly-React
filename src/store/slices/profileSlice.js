@@ -121,6 +121,11 @@ const profileSlice = createSlice({
       state.loading = true;
     },
     [getProfile.fulfilled]: (state, action) => {
+      if (!action.payload.success) {
+        state.error = action.payload.errors;
+        state.loading = false;
+        return;
+      }
       state.profilePageData = action.payload.profile;
       state.loading = false;
     },
