@@ -48,17 +48,20 @@ function ProfilePage() {
         <>
           <h2 className="mb-5">Здравствуйте, {profilePageData?.name}</h2>
           <div className="profile-container">
-            <div className="profile-image-container">
-              <img
-                src={profilePageData?.image_url}
-                alt="..."
-                style={{
-                  width: "100%",
-                  objectFit: "contain",
-                  display: "block",
-                  borderRadius: "50%",
-                }}
-              />
+            <div>
+              <div className="profile-image-container">
+                <img
+                  src={profilePageData?.image_url}
+                  alt="..."
+                  style={{
+                    width: "100%",
+                    objectFit: "contain",
+                    display: "block",
+                    borderRadius: "50%",
+                  }}
+                />
+              </div>
+              <div>avatars</div>
             </div>
             <div className="profile-form">
               <h3 className="mb-3">
