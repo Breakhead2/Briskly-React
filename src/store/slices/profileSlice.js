@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import getCookie from "../../services/getCookie";
 import axios from "axios";
 import { LINK_APP } from "../../config";
+import { showModal } from "./modalSlice";
 
 export const login = createAsyncThunk(
   "profile/login",
@@ -59,6 +60,20 @@ export const getProfile = createAsyncThunk(
     const data = await response.json();
 
     return data;
+  }
+);
+
+export const editProfile = createAsyncThunk(
+  "profile/editProfile",
+  async function (userData) {
+    const response = await axios.post(LINK_APP + "api/edit/profile", userData, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${getCookie("api")}`,
+      },
+    });
+
+    return response.data;
   }
 );
 
@@ -123,6 +138,19 @@ const profileSlice = createSlice({
     [getProfile.fulfilled]: (state, action) => {
       state.profilePageData = action.payload.profile;
       state.loading = false;
+    },
+    [editProfile.pending]: (state) => {
+      state.loading = true;
+    },
+    [editProfile.fulfilled]: (state, action) => {
+      if (!action.payload.success) {
+        state.error = action.payload.errors;
+        state.loading = false;
+        return;
+      }
+      state.profilePageData = action.payload.profile;
+      state.loading = false;
+      state.error = null;
     },
   },
 });
