@@ -29,7 +29,7 @@ function CarouselReviews() {
 
   useEffect(() => {
     dispatch(fetchGetReviews());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container-fluid text-center mb-5">
