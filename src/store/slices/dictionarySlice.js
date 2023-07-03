@@ -20,7 +20,7 @@ export const fetchRemoveWord = createAsyncThunk(
   "dictionary/fetchRemoveWord",
   async function (wordId) {
     const response = await axios.get(
-      `${LINK_APP}/api/remove/word?id=${wordId}`,
+      `${LINK_APP}api/remove/word?id=${wordId}`,
       {
         headers: {
           Accept: "application/json",
