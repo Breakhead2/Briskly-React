@@ -10,7 +10,6 @@ import {
   setType,
   setWordDone,
 } from '../store/slices/repeatWordsSlice';
-import RepeatWord from './RepeatWord';
 import { Button, Form } from 'react-bootstrap';
 
 function RepeatWords() {
