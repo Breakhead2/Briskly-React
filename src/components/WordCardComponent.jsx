@@ -1,5 +1,7 @@
-import { Card } from "react-bootstrap";
-import { BsTrash, BsFillPencilFill, BsFillStarFill } from "react-icons/bs";
+import { Card } from 'react-bootstrap';
+import { BsTrash, BsFillPencilFill, BsFillStarFill } from 'react-icons/bs';
+import { toggleWordToRepeat } from '../store/slices/repeatWordsSlice';
+import { useDispatch } from 'react-redux';
 
 function WordCardComponent({
   addRepeatWord,
@@ -11,9 +13,13 @@ function WordCardComponent({
   removeWordFromDictionary,
   editWord,
 }) {
+  const dispatch = useDispatch();
+
   const handlerRepeatWordsId = (e) => {
-    const svg = e.target.closest("svg");
-    svg.classList.toggle("active");
+    const wordToRepeat = { id, value, translate, img };
+    dispatch(toggleWordToRepeat(wordToRepeat));
+    const svg = e.target.closest('svg');
+    svg.classList.toggle('active');
     addRepeatWord(e.target);
   };
   const handlerRemoveWord = (e) => {
@@ -28,7 +34,7 @@ function WordCardComponent({
     <div className="col col-xl-4 col-md-6 col-12 p-3 w-100">
       <Card
         className="h-100"
-        style={{ overflow: "hidden", position: "relative" }}
+        style={{ overflow: 'hidden', position: 'relative' }}
         data-word={id}
       >
         <div className="word__image-contaner">
