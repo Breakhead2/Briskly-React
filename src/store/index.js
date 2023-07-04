@@ -1,3 +1,4 @@
+
 import { configureStore } from "@reduxjs/toolkit";
 import courses from "./slices/coursesSlice";
 import allLessons from "./slices/allLessonsSlice";
@@ -12,6 +13,7 @@ import article from "./slices/articleSlice";
 import dictionary from "./slices/dictionarySlice";
 import word from "./slices/wordSlice";
 import reviews from "./slices/reviewSlice";
+import repeatWords from './slices/repeatWordsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -27,6 +29,7 @@ export const store = configureStore({
     article,
     dictionary,
     word,
+    repeatWords,
     reviews,
   },
 });
