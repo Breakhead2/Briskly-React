@@ -1,15 +1,14 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import getCookie from '../../services/getCookie';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import getCookie from "../../services/getCookie";
+import axios from "axios";
+import { LINK_APP } from "../../config";
+import { showModal } from "./modalSlice";
 
 export const login = createAsyncThunk(
-  'profile/login',
+  "profile/login",
   async function (authData) {
-    await axios.get('https://breakhd2.store/sanctum/csrf-cookie');
-    const response = await axios.post(
-      'http://localhost:8010/proxy/api/auth/login',
-      authData
-    );
+    await axios.get("https://breakhd2.store/sanctum/csrf-cookie");
+    const response = await axios.post(LINK_APP + "api/auth/login", authData);
     if (response.data.success) {
       document.cookie = `api=${response.data.data.token}; path=/`;
     }
@@ -18,14 +17,11 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk(
-  'profile/register',
+  "profile/register",
   async function (authData) {
-    await axios.get('https://breakhd2.store/sanctum/csrf-cookie');
+    await axios.get("https://breakhd2.store/sanctum/csrf-cookie");
 
-    const response = await axios.post(
-      'http://localhost:8010/proxy/api/auth/register',
-      authData
-    );
+    const response = await axios.post(LINK_APP + "api/auth/register", authData);
 
     if (response.data.success) {
       document.cookie = `api=${response.data.data.token}; path=/`;
@@ -36,12 +32,12 @@ export const register = createAsyncThunk(
 );
 
 export const confirmLogin = createAsyncThunk(
-  'profile/confirmLogin',
+  "profile/confirmLogin",
   async function () {
-    const response = await fetch('http://localhost:8010/proxy/api/get/user', {
+    const response = await fetch(LINK_APP + "api/get/user", {
       headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${getCookie('api')}`,
+        Accept: "application/json",
+        Authorization: `Bearer ${getCookie("api")}`,
       },
     });
 
@@ -52,17 +48,14 @@ export const confirmLogin = createAsyncThunk(
 );
 
 export const getProfile = createAsyncThunk(
-  'profile/getProfile',
+  "profile/getProfile",
   async function () {
-    const response = await fetch(
-      'http://localhost:8010/proxy/api/get/profile',
-      {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${getCookie('api')}`,
-        },
-      }
-    );
+    const response = await fetch(LINK_APP + "api/get/profile", {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${getCookie("api")}`,
+      },
+    });
 
     const data = await response.json();
 
@@ -70,8 +63,22 @@ export const getProfile = createAsyncThunk(
   }
 );
 
+export const editProfile = createAsyncThunk(
+  "profile/editProfile",
+  async function (userData) {
+    const response = await axios.post(LINK_APP + "api/edit/profile", userData, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${getCookie("api")}`,
+      },
+    });
+
+    return response.data;
+  }
+);
+
 const profileSlice = createSlice({
-  name: 'profile',
+  name: "profile",
   initialState: {
     token: null,
     profile: null,
@@ -131,6 +138,19 @@ const profileSlice = createSlice({
     [getProfile.fulfilled]: (state, action) => {
       state.profilePageData = action.payload.profile;
       state.loading = false;
+    },
+    [editProfile.pending]: (state) => {
+      state.loading = true;
+    },
+    [editProfile.fulfilled]: (state, action) => {
+      if (!action.payload.success) {
+        state.error = action.payload.errors;
+        state.loading = false;
+        return;
+      }
+      state.profilePageData = action.payload.profile;
+      state.loading = false;
+      state.error = null;
     },
   },
 });

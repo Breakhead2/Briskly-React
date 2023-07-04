@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
-import style from './TestComponent.module.css';
-import MainCompoent from './MainComponent/MainComponent';
-import PopupComponent from '../ExerciseComponent/PopupComponent';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTest } from '../../store/slices/testSlice';
-import Loader from '../Loader';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import getCookie from '../../services/getCookie';
+import { useState, useEffect } from "react";
+import style from "./TestComponent.module.css";
+import MainCompoent from "./MainComponent/MainComponent";
+import PopupComponent from "../ExerciseComponent/PopupComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTest } from "../../store/slices/testSlice";
+import Loader from "../Loader";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import getCookie from "../../services/getCookie";
+import { LINK_APP } from "../../config";
 
 function TestComponent({ testId }) {
   const [counter, setCounter] = useState(0);
@@ -18,16 +19,16 @@ function TestComponent({ testId }) {
   const data = useSelector((state) => state.test.test);
   const loading = useSelector((state) => state.test.loading);
   const navigate = useNavigate();
-  const goBack = () => navigate('/tests');
+  const goBack = () => navigate("/tests");
 
   const handleRepeat = () => {
     setIsEnd(false);
     setCounter(0);
     setPoints(0);
     setErrors(0);
-    const blocks = document.querySelectorAll('.block');
+    const blocks = document.querySelectorAll(".block");
     for (let block of blocks) {
-      block.className = 'block';
+      block.className = "block";
     }
   };
 
@@ -40,17 +41,17 @@ function TestComponent({ testId }) {
       if (errors === 0 && points > 0) {
         axios
           .get(
-            `http://localhost:8010/proxy/api/send/points?type=test&points=${points}&id=${testId}`,
+            `${LINK_APP}api/send/points?type=test&points=${points}&id=${testId}`,
             {
               headers: {
-                Accept: 'application/json',
-                Authorization: `Bearer ${getCookie('api')}`,
+                Accept: "application/json",
+                Authorization: `Bearer ${getCookie("api")}`,
               },
             }
           )
           .then((response) => {
             if (response.data.success) {
-              const spanId = document.getElementById('points');
+              const spanId = document.getElementById("points");
               spanId.innerText = response.data.profile.points;
             }
           })

@@ -1,9 +1,10 @@
-import TestComponent from './TestComponent';
-import '../../styles/index.scss';
-import { useEffect, useState } from 'react';
-import PopupComponent from './PopupComponent';
-import axios from 'axios';
-import getCookie from '../../services/getCookie';
+import TestComponent from "./TestComponent";
+import "../../styles/index.scss";
+import { useEffect, useState } from "react";
+import PopupComponent from "./PopupComponent";
+import axios from "axios";
+import getCookie from "../../services/getCookie";
+import { LINK_APP } from "../../config";
 
 function Exercise({ questions, lessonId }) {
   const [loading, setLoading] = useState(true);
@@ -25,17 +26,17 @@ function Exercise({ questions, lessonId }) {
       if (repeat.length === 0 && points > 0) {
         axios
           .get(
-            `http://localhost:8010/proxy/api/send/points?type=lesson&points=${points}&id=${lessonId}`,
+            `${LINK_APP}api/send/points?type=lesson&points=${points}&id=${lessonId}`,
             {
               headers: {
-                Accept: 'application/json',
-                Authorization: `Bearer ${getCookie('api')}`,
+                Accept: "application/json",
+                Authorization: `Bearer ${getCookie("api")}`,
               },
             }
           )
           .then((response) => {
             if (response.data.success) {
-              const spanId = document.getElementById('points');
+              const spanId = document.getElementById("points");
               spanId.innerText = response.data.profile.points;
             }
           })
@@ -48,9 +49,9 @@ function Exercise({ questions, lessonId }) {
     setIsEnd(false);
     setCounter(0);
     setPoints(0);
-    const blocks = document.querySelectorAll('.block');
+    const blocks = document.querySelectorAll(".block");
     for (let block of blocks) {
-      block.className = 'block';
+      block.className = "block";
     }
   };
 

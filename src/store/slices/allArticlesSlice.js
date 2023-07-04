@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { LINK_APP } from "../../config";
 
 export const fetchArticles = createAsyncThunk(
   "articles/fetchArticles",
   async function () {
-    const response = await axios.get(
-      "http://localhost:8010/proxy/api/get/articles"
-    );
+    const response = await axios.get(LINK_APP + "api/get/articles");
     if (response.data.success) return response.data.articles;
   }
 );

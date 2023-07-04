@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { LINK_APP } from "../../config";
 
 export const fetchArticle = createAsyncThunk(
   "article/fetchArticle",
   async function (articleId) {
-    const response = await fetch(
-      `http://localhost:8010/proxy/api/get/article?id=${articleId}`
-    );
+    const response = await fetch(`${LINK_APP}api/get/article?id=${articleId}`);
     const data = await response.json();
 
     return data;

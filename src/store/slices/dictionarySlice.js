@@ -1,19 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import getCookie from "../../services/getCookie";
 import axios from "axios";
+import { LINK_APP } from "../../config";
 
 export const fetchDictinary = createAsyncThunk(
   "dictionary/fetchDictinary",
   async function () {
-    const response = await axios.get(
-      "http://localhost:8010/proxy/api/get/dictionary",
-      {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${getCookie("api")}`,
-        },
-      }
-    );
+    const response = await axios.get(LINK_APP + "api/get/dictionary", {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${getCookie("api")}`,
+      },
+    });
     if (response.data.success) return response.data;
   }
 );
@@ -22,7 +20,7 @@ export const fetchRemoveWord = createAsyncThunk(
   "dictionary/fetchRemoveWord",
   async function (wordId) {
     const response = await axios.get(
-      `http://localhost:8010/proxy/api/remove/word?id=${wordId}`,
+      `${LINK_APP}api/remove/word?id=${wordId}`,
       {
         headers: {
           Accept: "application/json",
@@ -37,16 +35,12 @@ export const fetchRemoveWord = createAsyncThunk(
 export const fetchAddNewWord = createAsyncThunk(
   "dictionary/fetchAddNewWord",
   async function (data) {
-    const response = await axios.post(
-      "http://localhost:8010/proxy/api/add/word",
-      data,
-      {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${getCookie("api")}`,
-        },
-      }
-    );
+    const response = await axios.post(LINK_APP + "api/add/word", data, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${getCookie("api")}`,
+      },
+    });
     if (response.data) return response.data;
   }
 );
@@ -83,7 +77,6 @@ const dictionarySlice = createSlice({
       state.loading = true;
     },
     [fetchAddNewWord.fulfilled]: (state, action) => {
-      console.log(action);
       if (!action.payload.success) {
         state.error = action.payload.errors;
         state.loading = false;
