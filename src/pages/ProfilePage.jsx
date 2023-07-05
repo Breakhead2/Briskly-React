@@ -3,16 +3,18 @@ import Loader from "../components/Loader";
 import { Form, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { getProfile, editProfile } from "../store/slices/profileSlice";
-import declension from "../services/declension";
+import AvatarsSlider from "../components/AvatarsSlider";
 
 function ProfilePage() {
   const loading = useSelector((state) => state.profile.loading);
   const profilePageData = useSelector((state) => state.profile.profilePageData);
+  const avatars = useSelector((state) => state.profile.avatars);
   const error = useSelector((state) => state.profile.error);
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [surname, setSurmame] = useState("");
   const [password, setPassword] = useState("");
+  const [avatarsList, setAvatarsList] = useState([]);
   // const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
@@ -21,6 +23,7 @@ function ProfilePage() {
     }
     setName(profilePageData?.name);
     setSurmame(profilePageData?.surname);
+    setAvatarsList(avatars);
     if (!error) {
       setPassword("");
     }
@@ -48,7 +51,7 @@ function ProfilePage() {
         <>
           <h2 className="mb-5">Здравствуйте, {profilePageData?.name}</h2>
           <div className="profile-container">
-            <div>
+            <div className="left-column">
               <div className="profile-image-container">
                 <img
                   src={profilePageData?.image_url}
@@ -61,7 +64,9 @@ function ProfilePage() {
                   }}
                 />
               </div>
-              <div>avatars</div>
+              <div>
+                <AvatarsSlider images={avatarsList} />
+              </div>
             </div>
             <div className="profile-form">
               <h3 className="mb-3">

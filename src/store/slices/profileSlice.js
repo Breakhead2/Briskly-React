@@ -83,6 +83,7 @@ const profileSlice = createSlice({
     token: null,
     profile: null,
     profilePageData: null,
+    avatars: null,
     loading: false,
     error: null,
   },
@@ -137,6 +138,7 @@ const profileSlice = createSlice({
     },
     [getProfile.fulfilled]: (state, action) => {
       state.profilePageData = action.payload.profile;
+      state.avatars = action.payload.avatars;
       state.loading = false;
     },
     [editProfile.pending]: (state) => {
