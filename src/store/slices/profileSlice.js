@@ -77,6 +77,20 @@ export const editProfile = createAsyncThunk(
   }
 );
 
+export const buyAvatar = createAsyncThunk(
+  "profile/buyAvatar",
+  async function (id) {
+    const response = await axios.get(`${LINK_APP}api/buy/avatar?id=${id}`, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${getCookie("api")}`,
+      },
+    });
+
+    if (response.data.success) return response.data;
+  }
+);
+
 const profileSlice = createSlice({
   name: "profile",
   initialState: {
@@ -84,6 +98,7 @@ const profileSlice = createSlice({
     profile: null,
     profilePageData: null,
     avatars: null,
+    userAvatarsId: null,
     loading: false,
     error: null,
   },
@@ -139,6 +154,7 @@ const profileSlice = createSlice({
     [getProfile.fulfilled]: (state, action) => {
       state.profilePageData = action.payload.profile;
       state.avatars = action.payload.avatars;
+      state.userAvatarsId = action.payload.user_avatars;
       state.loading = false;
     },
     [editProfile.pending]: (state) => {
@@ -153,6 +169,14 @@ const profileSlice = createSlice({
       state.profilePageData = action.payload.profile;
       state.loading = false;
       state.error = null;
+    },
+    [buyAvatar.pending]: (state) => {
+      state.loading = true;
+    },
+    [buyAvatar.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.profilePageData = action.payload.profile;
+      state.userAvatarsId = action.payload.user_avatars;
     },
   },
 });
