@@ -46,19 +46,30 @@ function ProfilePage() {
   };
 
   const handleBuyAvatar = () => {
-    if (avatar && profilePageData.points > avatars[avatar.id].cost) {
-      dispatch(buyAvatar(avatar.id));
-    } else if (userAvatarsId.indexOf(avatar.id) !== -1) {
-      dispatch(
-        showModal({
-          message: "У вас уже есть такой аватар",
-        })
-      );
+    if (avatar) {
+      if (userAvatarsId.indexOf(avatar.id) !== -1) {
+        dispatch(
+          showModal({
+            message: "У вас уже есть такой аватар",
+          })
+        );
+        return;
+      }
+      if (profilePageData.points > avatars[avatar.id].cost) {
+        dispatch(buyAvatar(avatar.id));
+      } else {
+        dispatch(
+          showModal({
+            message:
+              "К сожалению вам не хватает очков. Но вы можете заработать их пройдя тесты  или уроки.",
+          })
+        );
+      }
     } else {
       dispatch(
         showModal({
           message:
-            "Извините, вам не хватает очков или не выбран аватар. Для выбора аватара нажмите на него.",
+            "Извините, не выбран аватар. Для выбора аватара нажмите на него.",
         })
       );
     }
