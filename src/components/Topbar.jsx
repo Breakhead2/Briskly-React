@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import UserInfo from './UserInfo';
+import { Link } from "react-router-dom";
+import UserInfo from "./UserInfo";
 
 function Topbar() {
   return (
@@ -9,7 +9,7 @@ function Topbar() {
           <Link
             to="/"
             className="text-decoration-none d-flex align-items-center overflow-hidden"
-            style={{ height: '100px' }}
+            style={{ height: "100px" }}
           >
             <img className="main-logo" src="/img/BrisklyLogo.svg" alt="" />
             <div className="px-1 d-flex flex-column justify-content-center">
@@ -22,26 +22,28 @@ function Topbar() {
             </div>
           </Link>
         </div>
-        <div className="col-lg-3 text-right">
+        {/* <div className="col-lg-3 text-right">
           <div className="w-100 d-flex">
             <i className="fa fa-2x fa-search text-primary mr-3"></i>
             <div className="input-group">
               <form method="get" action="{{ route('search') }}">
-              <input
-                type="text"
-                className="form-control border-primary"
-                style={{ padding: 5, paddingLeft: 15 }}
-                placeholder="Поиск по тестам"
-                id="s"
-                name="s"
-              />
-              <div className="input-group-append">
-                <button className="btn btn-primary px-4" type="submit">Поиск</button>
-              </div>
-                </form>
+                <input
+                  type="text"
+                  className="form-control border-primary"
+                  style={{ padding: 5, paddingLeft: 15 }}
+                  placeholder="Поиск по тестам"
+                  id="s"
+                  name="s"
+                />
+                <div className="input-group-append">
+                  <button className="btn btn-primary px-4" type="submit">
+                    Поиск
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="d-lg-flex d-none">
           <UserInfo />
         </div>
