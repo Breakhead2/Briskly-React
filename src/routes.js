@@ -32,7 +32,7 @@ const routes = {
       element: <LoginPage />,
     },
   ],
-  genaral: [
+  general: [
     {
       name: "notFound",
       path: "*",
