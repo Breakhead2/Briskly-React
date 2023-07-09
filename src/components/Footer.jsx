@@ -3,7 +3,8 @@ import CookieConsent from 'react-cookie-consent';
 
 function Footer() {
   return (
-    <div>
+    <div style={{backgroundColor:"#44425A", border:"1px solid"}}>
+    <div style={{marginBottom:"50px"}}>
       <div className="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5">
         <div className="row pt-5">
           <div className="col-lg-7 col-md-12">
@@ -93,6 +94,7 @@ function Footer() {
       expires={99}
       >
       Этот сайт использует cookies. Продолжая работу с сайтом Вы разрешаете применение и использование cookie-файлов.</CookieConsent>
+    </div>
     </div>
   );
 }
