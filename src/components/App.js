@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../store/slices/coursesSlice";
 
+
 function App() {
   const courses = useSelector((state) => state.courses.courses);
   const dispatch = useDispatch();

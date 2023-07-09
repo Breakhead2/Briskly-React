@@ -18,6 +18,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Homepage from "./pages/HomePage";
 import DictionaryPage from "./pages/DictionaryPage";
 import AddReviewPage from "./pages/AddReviewPage";
+import PolicyPage from './pages/PolicyPage';
 
 const routes = {
   auth: [
@@ -102,6 +103,11 @@ const routes = {
       name: "review",
       path: "/review",
       element: <AuthRequire children={<AddReviewPage />} />,
+    },
+    {
+      name: "policy",
+      path: "/policy",
+      element: <PolicyPage />,
     },
   ],
 };
