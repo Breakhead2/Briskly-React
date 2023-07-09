@@ -4,7 +4,7 @@ import UserInfo from "./UserInfo";
 function Topbar() {
   return (
     <div className="container-fluid d-lg-block">
-      <div className="d-flex justify-content-between py-4 px-3">
+      <div className="d-flex justify-content-between py-4 px-3 align-items-center">
         <div className="">
           <Link
             to="/"
@@ -22,11 +22,13 @@ function Topbar() {
             </div>
           </Link>
         </div>
-        {/* <div className="col-lg-3 text-right">
-          <div className="w-100 d-flex">
-            <i className="fa fa-2x fa-search text-primary mr-3"></i>
+        <div className="col-lg-3 text-right">
+          <form method="get" action="#" className="w-100 d-flex">
+            <button className="myButton">
+              <i className="fa fa-2x fa-search mr-3"></i>
+            </button>
             <div className="input-group">
-              <form method="get" action="{{ route('search') }}">
+              <div>
                 <input
                   type="text"
                   className="form-control border-primary"
@@ -35,15 +37,10 @@ function Topbar() {
                   id="s"
                   name="s"
                 />
-                <div className="input-group-append">
-                  <button className="btn btn-primary px-4" type="submit">
-                    Поиск
-                  </button>
-                </div>
-              </form>
+              </div>
             </div>
-          </div>
-        </div> */}
+          </form>
+        </div>
         <div className="d-lg-flex d-none">
           <UserInfo />
         </div>

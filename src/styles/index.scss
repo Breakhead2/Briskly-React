@@ -732,3 +732,15 @@ ol {
     width: 100%;
   }
 }
+
+//myButton
+.myButton {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #44425a;
+  transition: all, linear, 0.3s;
+}
+.myButton i:hover {
+  color: #ff6600;
+}
