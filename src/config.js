@@ -1,1 +1,1 @@
-export const LINK_APP = "http://localhost:8010/proxy/";
+export const LINK_APP = "https://breakhd2.store/";
