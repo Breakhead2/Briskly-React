@@ -21,7 +21,7 @@ function MainCarousel() {
                 Современные практики онлайн
               </h1>
               <Link
-                to="/lessons"
+                to="/courses"
                 className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2"
               >
                 Хочу узнать больше

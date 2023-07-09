@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCourses } from '../store/slices/coursesSlice';
 
+
 function App() {
   const courses = useSelector((state) => state.courses.courses);
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function App() {
         ))}
       </Route>
       <Route path="/" element={<Layout />}>
-        {routes.genaral.map((route) => (
+        {routes.general.map((route) => (
           <Route key={route.name} path={route.path} element={route.element} />
         ))}
       </Route>
