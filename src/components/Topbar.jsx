@@ -22,22 +22,26 @@ function Topbar() {
             </div>
           </Link>
         </div>
-        {/* <div className="col-lg-3 text-right">
+        <div className="col-lg-3 text-right">
           <div className="w-100 d-flex">
             <i className="fa fa-2x fa-search text-primary mr-3"></i>
             <div className="input-group">
+              <form method="get" action="{{ route('search') }}">
               <input
                 type="text"
                 className="form-control border-primary"
                 style={{ padding: 5, paddingLeft: 15 }}
-                placeholder="Что-то ищете?"
+                placeholder="Поиск по тестам"
+                id="s"
+                name="s"
               />
               <div className="input-group-append">
-                <button className="btn btn-primary px-4">Поиск</button>
+                <button className="btn btn-primary px-4" type="submit">Поиск</button>
               </div>
+                </form>
             </div>
           </div>
-        </div> */}
+        </div>
         <div className="d-lg-flex d-none">
           <UserInfo />
         </div>
