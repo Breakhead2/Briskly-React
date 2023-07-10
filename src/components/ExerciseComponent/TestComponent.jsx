@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import style from './TestComponent.module.css';
+import { useEffect, useState } from "react";
+import style from "./TestComponent.module.css";
 
 const ExerciseComponent = ({
   data,
@@ -10,20 +10,20 @@ const ExerciseComponent = ({
   points,
   setRepeat,
 }) => {
-  const questionArr = data[counter].value.split('()');
-  const [answer, setAnswer] = useState('');
+  const questionArr = data[counter].value.split("()");
+  const [answer, setAnswer] = useState("");
   const [erros, setErrors] = useState(false);
   const [wrongs, setWrongs] = useState([]);
 
   const handleNext = () => {
     if (counter < data.length - 1) {
-      let buttons = document.querySelectorAll('.answer');
+      let buttons = document.querySelectorAll(".answer");
       for (let button of buttons) {
-        button.className = 'answer';
+        button.className = "answer";
       }
       setCounter(counter + 1);
       setErrors(false);
-      setAnswer('');
+      setAnswer("");
     } else {
       setRepeat(wrongs);
       setIsEnd(true);
@@ -32,13 +32,13 @@ const ExerciseComponent = ({
 
   const handleAnswer = (e) => {
     e.preventDefault();
-    const blocks = document.querySelectorAll('.block');
+    const blocks = document.querySelectorAll(".block");
 
     if (e.target.value === data[counter].correct_answer) {
       for (let block of blocks) {
         if (+block.id === counter) {
-          if (!block.classList.contains('wrong')) {
-            block.classList.add('correct');
+          if (!block.classList.contains("wrong")) {
+            block.classList.add("correct");
           }
         }
       }
@@ -46,30 +46,29 @@ const ExerciseComponent = ({
       if (!erros) {
         setPoints(points + 1);
       }
-      let wrongButtons = document.querySelectorAll('.btn-wrong');
+      let wrongButtons = document.querySelectorAll(".btn-wrong");
       for (let button of wrongButtons) {
-        button.classList.remove('btn-wrong');
+        button.classList.remove("btn-wrong");
       }
-      e.target.classList.remove('btn-wrong');
-      e.target.classList.add('btn-wrong');
+      e.target.classList.remove("btn-wrong");
       setTimeout(handleNext, 1000);
     } else {
       for (let block of blocks) {
-        if (+block.id === counter) block.classList.add('wrong');
+        if (+block.id === counter) block.classList.add("wrong");
       }
-      e.target.classList.add('btn-wrong');
+      e.target.classList.add("btn-wrong");
       setWrongs([...wrongs, data[counter]]);
       setErrors(true);
     }
   };
 
   useEffect(() => {
-    let blocks = document.querySelectorAll('.block');
+    let blocks = document.querySelectorAll(".block");
     for (let block of blocks) {
       if (+block.id === counter) {
-        block.classList.add('active');
+        block.classList.add("active");
       } else {
-        block.classList.remove('active');
+        block.classList.remove("active");
       }
     }
   }, [counter]);
@@ -94,7 +93,7 @@ const ExerciseComponent = ({
           {questionArr[1]}
         </div>
         <div className={style.buttons}>
-          {data[counter].answers.split(',').map((item, index) => {
+          {data[counter].answers.split(",").map((item, index) => {
             return (
               <button
                 id="btn_answer"
